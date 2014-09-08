@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_case_section_stage_config_user,crm_case_section_stage_config user,model_crm_case_section_stage_config,base.group_sale_salesman,1,0,0,0
+access_crm_case_section_stage_config_manager,crm_case_section_stage_config manager,model_crm_case_section_stage_config,base.group_sale_manager,1,1,1,1
+access_crm_lead_stage_log,crm_lead_stage_log user,model_crm_lead_stage_log,base.group_sale_salesman,1,1,1,0

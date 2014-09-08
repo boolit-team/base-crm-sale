@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>         
+         <record id="sales_team_form_view_in_crm_inherit2" model="ir.ui.view">
+            <field name="name">crm.case.section.form - inherit 2</field>
+            <field name="model">crm.case.section</field>
+             <field name="inherit_id" ref="crm_stages_extend.sales_team_form_view_in_crm_inherit"/>
+            <field name="arch" type="xml">
+                <group name="second" position="inside">
+                    <field name="uom_id"/>
+                </group>
+            </field>
+        </record>
+    </data>
+</openerp>

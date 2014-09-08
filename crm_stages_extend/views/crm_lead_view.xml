@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>         
+        <!-- CRM Lead Form View  -->
+        <record model="ir.ui.view" id="crm_case_form_view_leads_inherit">
+            <field name="name">CRM - Leads Form - Inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="arch" type="xml">
+                <button string="Convert to Opportunity" position="after">
+                    <button name="next_stage" string="Next Stage" type="object"
+                        help="Go to Next Stage" class="oe_highlight"
+                        attrs="{'invisible': True}"
+                    />                                           
+                </button>            
+                <field name="priority" position="after">
+                    <field name="stage_deadline"
+                        attrs="{'invisible': [('stage_deadline', '=', False)]}"
+                    />
+                </field>
+            </field>
+        </record>    
+        <!-- CRM Opportunity Form View -->
+        <record model="ir.ui.view" id="crm_case_form_view_oppor_inheritt">
+            <field name="name">CRM - Opportunities Form - Inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <button name="case_mark_won" string="Mark Won" position="before">
+                    <field name="hide_stage_btn" invisible="1"/>
+                    <button name="next_stage" string="Next Stage" type="object"
+                        help="Go to Next Stage" class="oe_highlight"
+                        attrs="{'invisible': [('hide_stage_btn', '=', True)]}"
+                    />                                        
+                </button>
+                <button name="case_mark_lost" position="after">
+                    <button name="reset_stage" string="Reset Stages" type="object"
+                        help="Go to Default Stage"
+                    />                    
+                </button>            
+                <field name="date_deadline" position="before">
+                    <field name="stage_deadline"
+                        attrs="{'invisible': [('stage_deadline', '=', False)]}"
+                    />
+                </field>
+            </field>
+        </record>              
+    </data>
+</openerp>
