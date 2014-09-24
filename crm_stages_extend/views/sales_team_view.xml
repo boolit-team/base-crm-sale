@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <page string="Stages" position="after">
                     <page string="Stages Config">
+                        <button string="Init Config" name="init_config" class="oe_highlight" type="object"/>
                         <group>
                             <group name="first">
                                 <field name="default_stage"/>

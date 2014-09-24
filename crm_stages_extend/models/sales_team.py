@@ -24,36 +24,56 @@ from openerp import models, fields, api
 from openerp.exceptions import Warning
 from openerp.tools.translate import _
 class crm_case_section_stage_config(models.Model):
-	_name = 'crm.case.section.stage_config'
-	_description = 'Sales Team Stages Configuration'
+    _name = 'crm.case.section.stage_config'
+    _description = 'Sales Team Stages Configuration'
 
-	section_id = fields.Many2one('crm.case.section', 'Sales Team')
-	stage_id = fields.Many2one('crm.case.stage', 'Stage', domain=[('type', '!=', 'lead')], required=True)
-	next_stage_id = fields.Many2one('crm.case.stage', 'Next Stage', domain=[('type', '!=', 'lead')])
-	back_stage_id = fields.Many2one('crm.case.stage', 'Back Stage', domain=[('type', '!=', 'lead')])
-	user_id = fields.Many2one('res.users', 'Responsible')
-	sequence = fields.Integer('Sequence')
-	days_for_stage = fields.Integer('Days for Stage', required=True)
+    section_id = fields.Many2one('crm.case.section', 'Sales Team')
+    stage_id = fields.Many2one('crm.case.stage', 'Stage', domain=[('type', '!=', 'lead')], required=True)
+    next_stage_id = fields.Many2one('crm.case.stage', 'Next Stage', domain=[('type', '!=', 'lead')])
+    back_stage_id = fields.Many2one('crm.case.stage', 'Back Stage', domain=[('type', '!=', 'lead')])
+    user_id = fields.Many2one('res.users', 'Responsible')
+    sequence = fields.Integer('Sequence')
+    days_for_stage = fields.Integer('Days for Stage', required=True)
 
-	_order = 'sequence'
+    _order = 'sequence'
 
 class sales_team(models.Model):
-	_inherit = 'crm.case.section'
+    _inherit = 'crm.case.section'
 
-	stage_config_ids = fields.One2many('crm.case.section.stage_config', 'section_id', 'Stages Config')
-	default_stage = fields.Many2one('crm.case.stage', 'Default Stage', 
-		domain=[('type', '!=', 'lead'), ('probability', '!=', 100.0), ('probability', '!=', 0.0)])
-	@api.one
-	@api.constrains('stage_config_ids', 'stage_ids')
-	def _check_config(self):
-		stages = []
-		for config in self.stage_config_ids:
-			if config.stage_id.id not in stages:
-				stages.append(config.stage_id.id)
-			else:
-				raise Warning(_('Stage in Config Must be Unique!'))
-			if config.stage_id not in self.stage_ids:
-				raise Warning(_('"%s" Stage is not defined in Sales Team Stages!' % (config.stage_id.name)))
+    stage_config_ids = fields.One2many('crm.case.section.stage_config', 'section_id', 'Stages Config')
+    default_stage = fields.Many2one('crm.case.stage', 'Default Stage', 
+       domain=[('type', '!=', 'lead'), ('probability', '!=', 100.0), ('probability', '!=', 0.0)])
+
+    @api.one
+    def init_config(self):
+        config_obj = self.env['crm.case.section.stage_config']
+        if not self.stage_config_ids:
+            config_line = None
+            for stage in self.stage_ids:
+                if stage.type != 'lead' and stage.probability != 0.0:
+                    if config_line and (config_line.stage_id.probability != 0.0 \
+                        or config_line.stage_id.probability != 100.0):
+                        config_line.next_stage_id = stage.id
+                    config_line = config_obj.create({
+                        'stage_id': stage.id, 
+                        'sequence': stage.sequence,
+                        'days_for_stage': 0, 
+                        'section_id': self.id})
+        else:
+            raise Warning(_("Init Configuration settings can only be used on empty config!"))
+
+    @api.one
+    @api.constrains('stage_config_ids', 'stage_ids')
+    def _check_config(self):
+        stages = []
+        for config in self.stage_config_ids:
+            if config.stage_id.id not in stages:
+                stages.append(config.stage_id.id)
+            else:
+                raise Warning(_('Stage in Config Must be Unique!'))
+            if config.stage_id not in self.stage_ids:
+                raise Warning(_('"%s" Stage is not defined in Sales Team Stages!' % (config.stage_id.name)))
+
 
 
 
