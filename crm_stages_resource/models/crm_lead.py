@@ -45,7 +45,7 @@ class crm_lead(models.Model):
 			create_date = create_date.astimezone(pytz.utc)
 			self.stage_deadline = create_date + timedelta(days=stage_config.days_for_stage)
 			if self.section_id.uom_id:				
-				employee = self.env['hr.employee'].search([('user_id', '=', self.user_id.id)])
+				employee = self.env['hr.employee'].search([('user_id', '=', self.user_id.id)], limit=1)
 				if employee and employee.contract_id:
 					contract = employee.contract_id
 					if contract and contract.working_hours:

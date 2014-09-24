@@ -57,7 +57,16 @@ class crm_lead(models.Model):
 		stage_log = self.env['crm.lead.stage_log'].search(
 			[('lead_id', '=', self.id), ('stage_id', '=', self.stage_id.id)])
 		while stage_log:
-			return stage_log				
+			return stage_log	
+
+	@api.model
+	def _base_log_dict(self, lead=None):
+		obj = self
+		if lead:
+			obj = lead
+		log_vals = {'lead_id': obj.id, 'user_id': obj.user_id.id, 
+			'stage_id': obj.stage_id.id, 'lead_type': obj.type, 'section_id': obj.section_id.id}
+		return log_vals							
 
 	@api.one
 	def next_stage(self):
@@ -68,12 +77,9 @@ class crm_lead(models.Model):
 					self.stage_id = stage_config.next_stage_id.id			
 					stage_config_next = self.get_stage_config()
 					if 	stage_config_next and stage_config_next.user_id:
-						self.user_id = stage_config_next.user_id.id							
-					log_vals = {'lead_id': self.id, 'user_id': self.user_id.id, 
-						'stage_id': self.stage_id.id, 'prev_stage_id': stage_config.stage_id.id,
-						'section_id': self.section_id.id,
-						'lead_type': self.type,
-					}
+						self.user_id = stage_config_next.user_id.id	
+					log_vals = self._base_log_dict()
+					log_vals['prev_stage_id'] = stage_config.stage_id.id						
 					self.env['crm.lead.stage_log'].create(log_vals)
 				else:
 					raise Warning(_('"%s" Stage is not Set for %s Team!' % (stage_config.next_stage_id.name, self.section_id.name)))
@@ -95,33 +101,36 @@ class crm_lead(models.Model):
 		if self.section_id.default_stage:
 			self.stage_id = self.section_id.default_stage.id					
 		else:
-			raise Warning(_('There is no default Stage defined!'))
-
-					
+			raise Warning(_('There is no default Stage defined!'))					
 
 	@api.model
 	def create(self, vals):
 		"""
 		Logs init stage on creation.
 		"""
-		lead = super(crm_lead, self).create(vals)			
-		log_vals = {'lead_id': lead.id, 'user_id': lead.user_id.id, 
-			'stage_id': lead.stage_id.id, 'lead_type': lead.type, 'section_id': self.section_id.id}
+		lead = super(crm_lead, self).create(vals)
+		log_vals = self._base_log_dict(lead)		
 		self.env['crm.lead.stage_log'].create(log_vals)
 		return lead
-	
-	def _convert_opportunity_data(self,cr , uid, lead, customer, section_id=False, context=None):
+
+	@api.multi
+	def write(self, vals):
+		for lead in self: 
+			if lead.type == 'lead' and vals.get('stage_id'):
+				log_vals = self._base_log_dict(lead)
+				log_vals = dict(log_vals, stage_id=vals.get('stage_id'), prev_stage_id=lead.stage_id.id)
+				self.env['crm.lead.stage_log'].create(log_vals)
+		return super(crm_lead, self).write(vals)
+
+	@api.model
+	def _convert_opportunity_data(self, lead, customer, section_id=False):
 		"""
 		Logs stage information on conversion
 		"""
-		vals = super(crm_lead, self)._convert_opportunity_data(cr, uid, lead, customer, section_id=False, context=None)
-		log_vals = {
-			'lead_id': lead.id, 'user_id': lead.user_id.id, 
-			'stage_id': lead.stage_id.id, 'section_id': lead.section_id.id,
-			'lead_type': 'opportunity',
-		}
-		self.pool.get('crm.lead.stage_log').create(cr, uid, log_vals, context=context)
-		return vals
+		log_vals = self._base_log_dict(lead)
+		log_vals['lead_type'] = 'opportunity'
+		self.env['crm.lead.stage_log'].create(log_vals)
+		return super(crm_lead, self)._convert_opportunity_data(lead, customer, section_id=False)
 
 
 	@api.one
