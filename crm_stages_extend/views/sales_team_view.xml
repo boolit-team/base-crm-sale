@@ -20,7 +20,7 @@
                                 <field name="days_for_stage"/>
                                 <field name="user_id"/>
                                 <field name="next_stage_id"/>
-                                <field name="prev_stage_id"/>
+                                <field name="back_stage_id"/>
                                 <field name="sequence"/>
                             </tree>
                         </field>

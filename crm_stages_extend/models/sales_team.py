@@ -30,7 +30,7 @@ class crm_case_section_stage_config(models.Model):
 	section_id = fields.Many2one('crm.case.section', 'Sales Team')
 	stage_id = fields.Many2one('crm.case.stage', 'Stage', domain=[('type', '!=', 'lead')], required=True)
 	next_stage_id = fields.Many2one('crm.case.stage', 'Next Stage', domain=[('type', '!=', 'lead')])
-	prev_stage_id = fields.Many2one('crm.case.stage', 'Previous Stage', domain=[('type', '!=', 'lead')])
+	back_stage_id = fields.Many2one('crm.case.stage', 'Back Stage', domain=[('type', '!=', 'lead')])
 	user_id = fields.Many2one('res.users', 'Responsible')
 	sequence = fields.Integer('Sequence')
 	days_for_stage = fields.Integer('Days for Stage', required=True)

@@ -41,7 +41,7 @@ class crm_lead(models.Model):
 	_inherit = 'crm.lead'
 
 	stage_deadline = fields.Datetime('Stage Deadline', compute="_compute_stage_deadline")
-	hide_stage_btn = fields.Boolean('Hide Next Stage Button')
+	stage_probability = fields.Float('Stage Probability', compute="_compute_probability")
 
 	@api.multi
 	@api.returns('crm.case.section.stage_config')
@@ -66,8 +66,6 @@ class crm_lead(models.Model):
 			if stage_config.next_stage_id: 
 				if stage_config.next_stage_id:
 					self.stage_id = stage_config.next_stage_id.id			
-					if self.stage_id.probability == 100.0 or self.stage_id.probability == 0.0:
-						self.hide_stage_btn = True
 					stage_config_next = self.get_stage_config()
 					if 	stage_config_next and stage_config_next.user_id:
 						self.user_id = stage_config_next.user_id.id							
@@ -79,6 +77,18 @@ class crm_lead(models.Model):
 					self.env['crm.lead.stage_log'].create(log_vals)
 				else:
 					raise Warning(_('"%s" Stage is not Set for %s Team!' % (stage_config.next_stage_id.name, self.section_id.name)))
+			else:
+				raise Warning(_("Next stage in config is missing!"))
+		else:
+			raise Warning(_("Stage config is missing!"))
+
+	@api.one
+	def back_stage(self):
+		stage_config = self.get_stage_config()
+		if stage_config and stage_config.back_stage_id:
+			self.stage_id = stage_config.back_stage_id.id
+		else:
+			raise Warning(_("Back stage is not defined for this stage\n or stage config is missing!"))
 
 	@api.one
 	def reset_stage(self):
@@ -113,6 +123,11 @@ class crm_lead(models.Model):
 		self.pool.get('crm.lead.stage_log').create(cr, uid, log_vals, context=context)
 		return vals
 
+
+	@api.one
+	@api.depends('stage_id')
+	def _compute_probability(self):
+		self.stage_probability = self.stage_id.probability
 
 	@api.one
 	def _compute_stage_deadline(self):

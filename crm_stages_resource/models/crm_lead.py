@@ -23,6 +23,8 @@
 from openerp import models, fields
 from openerp import api
 from datetime import datetime, timedelta
+from openerp.exceptions import Warning
+from openerp.tools.translate import _
 import pytz
 
 class crm_lead(models.Model):
@@ -36,6 +38,8 @@ class crm_lead(models.Model):
 		if stage_config and stage_logs:
 			stage_log = stage_logs[-1]				
 			create_date = datetime.strptime(stage_log.create_date, "%Y-%m-%d %H:%M:%S")
+			if not self.user_id.tz:
+				raise Warning(_("%s timezone is not set!" % (self.user_id.name)))
 			tz = pytz.timezone(self.user_id.tz)
 			create_date = tz.localize(create_date)
 			create_date = create_date.astimezone(pytz.utc)

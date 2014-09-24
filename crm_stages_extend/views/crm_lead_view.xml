@@ -27,11 +27,15 @@
             <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
             <field name="arch" type="xml">
                 <button name="case_mark_won" string="Mark Won" position="before">
-                    <field name="hide_stage_btn" invisible="1"/>
+                    <field name="stage_probability" invisible="1"/>
                     <button name="next_stage" string="Next Stage" type="object"
                         help="Go to Next Stage" class="oe_highlight"
-                        attrs="{'invisible': [('hide_stage_btn', '=', True)]}"
-                    />                                        
+                        attrs="{'invisible': ['|', ('stage_probability', '=', 100.0), ('stage_probability', '=', 0.0)]}"
+                    />
+                    <button name="back_stage" string="Back Stage" type="object"
+                        help="Jump to back Stage"
+                        attrs="{'invisible': ['|', ('stage_probability', '=', 100.0), ('stage_probability', '=', 0.0)]}"
+                    />                                                            
                 </button>
                 <button name="case_mark_lost" position="after">
                     <button name="reset_stage" string="Reset Stages" type="object"
