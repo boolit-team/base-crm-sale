@@ -11,7 +11,7 @@
                         <button string="Init Config" name="init_config" class="oe_highlight" type="object"/>
                         <group>
                             <group name="first">
-                                <field name="default_stage"/>
+                                <field name="default_stage_id"/>
                             </group>
                             <group name="second"></group>
                         </group>

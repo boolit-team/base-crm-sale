@@ -98,8 +98,8 @@ class crm_lead(models.Model):
 
 	@api.one
 	def reset_stage(self):
-		if self.section_id.default_stage:
-			self.stage_id = self.section_id.default_stage.id					
+		if self.section_id.default_stage_id:
+			self.stage_id = self.section_id.default_stage_id.id					
 		else:
 			raise Warning(_('There is no default Stage defined!'))					
 

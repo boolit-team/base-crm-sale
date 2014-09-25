@@ -52,6 +52,6 @@ class crm_lead(models.Model):
 						hours_for_stage = int(stage_config.days_for_stage * self.section_id.uom_id.factor)
 						end_dt = contract.working_hours.schedule_hours(hours=hours_for_stage, day_dt=create_date)
 						end_dt = end_dt[-1][-1][-1]
-						end_dt = tz.localize(end_dt)
-						end_dt = end_dt.astimezone(pytz.utc)						
+						#end_dt = tz.localize(end_dt) - localized automatically
+						#end_dt = end_dt.astimezone(pytz.utc)						
 						self.stage_deadline = end_dt								

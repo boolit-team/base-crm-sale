@@ -41,12 +41,16 @@ class sales_team(models.Model):
     _inherit = 'crm.case.section'
 
     stage_config_ids = fields.One2many('crm.case.section.stage_config', 'section_id', 'Stages Config')
-    default_stage = fields.Many2one('crm.case.stage', 'Default Stage', 
+    default_stage_id = fields.Many2one('crm.case.stage', 'Default Stage', 
        domain=[('type', '!=', 'lead'), ('probability', '!=', 100.0), ('probability', '!=', 0.0)])
 
     @api.one
     def init_config(self):
         config_obj = self.env['crm.case.section.stage_config']
+        if self.stage_ids:
+            self.default_stage_id = self.stage_ids[0].id
+        else:
+            raise Warning("There are no stages in sales team!")
         if not self.stage_config_ids:
             config_line = None
             for stage in self.stage_ids:
