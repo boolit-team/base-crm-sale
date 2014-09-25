@@ -41,7 +41,6 @@ class crm_lead(models.Model):
 	_inherit = 'crm.lead'
 
 	stage_deadline = fields.Datetime('Stage Deadline', compute="_compute_stage_deadline")
-	stage_probability = fields.Float('Stage Probability', compute="_compute_probability")
 
 	@api.multi
 	@api.returns('crm.case.section.stage_config')
@@ -131,12 +130,6 @@ class crm_lead(models.Model):
 		log_vals['lead_type'] = 'opportunity'
 		self.env['crm.lead.stage_log'].create(log_vals)
 		return super(crm_lead, self)._convert_opportunity_data(lead, customer, section_id=False)
-
-
-	@api.one
-	@api.depends('stage_id')
-	def _compute_probability(self):
-		self.stage_probability = self.stage_id.probability
 
 	@api.one
 	def _compute_stage_deadline(self):

@@ -19,7 +19,24 @@
                     />
                 </field>
             </field>
-        </record>    
+        </record>   
+
+        <record model="ir.ui.view" id="crm_case_tree_view_oppor_inherit2">
+            <field name="name">Opportunities Tree Inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="create_date" position="after">
+                        <field name="stage_deadline"/>
+                    </field>                
+                    <tree string="Opportunities" position="attributes">
+                        <attribute name="colors">gray:probability == 100;red:(date_deadline and (date_deadline &lt; current_date)) or (stage_deadline and (stage_deadline &lt; current_date))</attribute>
+                    </tree>                    
+                </data>
+            </field>
+        </record> 
+
         <!-- CRM Opportunity Form View -->
         <record model="ir.ui.view" id="crm_case_form_view_oppor_inheritt">
             <field name="name">CRM - Opportunities Form - Inherit</field>
@@ -27,14 +44,13 @@
             <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
             <field name="arch" type="xml">
                 <button name="case_mark_won" string="Mark Won" position="before">
-                    <field name="stage_probability" invisible="1"/>
                     <button name="next_stage" string="Next Stage" type="object"
                         help="Go to Next Stage" class="oe_highlight"
-                        attrs="{'invisible': ['|', ('stage_probability', '=', 100.0), ('stage_probability', '=', 0.0)]}"
+                        attrs="{'invisible': ['|', ('probability', '=', 100.0), ('probability', '=', 0.0)]}"
                     />
                     <button name="back_stage" string="Back Stage" type="object"
                         help="Jump to back Stage"
-                        attrs="{'invisible': ['|', ('stage_probability', '=', 100.0), ('stage_probability', '=', 0.0)]}"
+                        attrs="{'invisible': ['|', ('probability', '=', 100.0), ('probability', '=', 0.0)]}"
                     />                                                            
                 </button>
                 <button name="case_mark_lost" position="after">
@@ -80,6 +96,6 @@
                         <xpath expr="/kanban/templates/t/div/div[2]/div[3]/t[1]" position="replace"/>               
                 </data>        
             </field>
-        </record>                    
+        </record>                          
     </data>
 </openerp>
