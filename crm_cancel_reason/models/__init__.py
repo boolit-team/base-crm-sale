@@ -1,1 +1,1 @@
-import crm_lead
+import crm_cancel_reason
