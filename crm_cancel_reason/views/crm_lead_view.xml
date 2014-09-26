@@ -9,7 +9,7 @@
             <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
             <field name="arch" type="xml">
                 <page string="Lead" position="after">
-                    <page string="Cancel Reasons" attrs="{'invisible': [('probability', '!=', 0)]}">
+                    <page string="Cancel Reasons" attrs="{'invisible': [('probability', '>', 0)]}">
                         <field name="reason_ids">
                             <tree string="Cancel Reasons" editable="bottom">
                                 <field name="tier_one_id" widget="selection" 

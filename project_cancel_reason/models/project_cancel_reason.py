@@ -27,6 +27,6 @@ class reason(models.Model):
     project_id = fields.Many2one('project.project', 'Project')
 
 class crm_lead(models.Model):
-    _inherit = 'crm.lead'
+    _inherit = 'project.project'
 
     reason_ids = fields.One2many('base.reason', 'project_id', 'Reasons')
