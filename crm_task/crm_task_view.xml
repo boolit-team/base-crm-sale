@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+    <record id="crm_todo_opportunity_add" model="ir.ui.view">
+        <field name="name">Opportunities - Tasks</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
+        <field name="arch" type="xml">
+            <data>
+            <page string="Lead" position="before">
+                <page string="Tasks">
+                    <field name="task_ids"/>
+                </page>
+            </page>
+            </data>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="project_task_crm_form">
+        <field name="name">project.task.form.crm</field>
+        <field name="model">project.task</field>
+        <field name="priority">20</field>
+        <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="lead_id" attrs="{'invisible': [('lead_id', '=', False)]}" style="width: 80%%"/>
+            </field>
+        </field>
+    </record>
+
+    </data>
+</openerp>
