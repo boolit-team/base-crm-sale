@@ -38,7 +38,7 @@
         'resource',      
     ],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/sales_team_view.xml',
         #'data/,        
 
