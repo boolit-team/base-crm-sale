@@ -34,7 +34,7 @@
     'author': 'OERP',
     'website': 'www.oerp.eu',
     'depends': [
-        'base', 'crm'    
+        'base'    
     ],
     'data': [
         'security/ir.model.access.csv',

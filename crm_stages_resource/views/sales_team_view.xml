@@ -8,7 +8,11 @@
             <field name="arch" type="xml">
                 <group name="second" position="inside">
                     <field name="uom_id"/>
+                    <field name="default_working_hours"/>
                 </group>
+                <field name="back_stage_id" position="after">
+                    <field name="working_hours"/>
+                </field>
             </field>
         </record>
     </data>

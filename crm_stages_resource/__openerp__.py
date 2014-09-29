@@ -22,20 +22,20 @@
 
 
 {
-    'name': 'Name',
+    'name': 'Stage Deadline Calculation ',
     'version': '1.0',
-    'category': 'CRM',
+    'category': 'CRM Resources management',
     'sequence': 2,
-    'summary': 'CRM Resources management',
+    'summary': 'Stages Deadline Calculation Extension',
     'description': """
-	Description
+	Extends stage deadline calculation to take in considarion users working time.
 	""",
-    'author': 'Andrius Laukavičius',
-    'website': '',
+    'author': 'OERP',
+    'website': 'www.oerp.eu',
     'depends': [
         'crm_stages_extend',
-        'hr_contract',
-        'product',      
+        'product',
+        'resource',      
     ],
     'data': [
         #'security/ir.model.access.csv',

@@ -40,18 +40,14 @@ class crm_lead(models.Model):
 			create_date = datetime.strptime(stage_log.create_date, "%Y-%m-%d %H:%M:%S")
 			if not self.user_id.tz:
 				raise Warning(_("%s timezone is not set!" % (self.user_id.name)))
-			tz = pytz.timezone(self.user_id.tz)
-			create_date = tz.localize(create_date)
-			create_date = create_date.astimezone(pytz.utc)
 			self.stage_deadline = create_date + timedelta(days=stage_config.days_for_stage)
-			if self.section_id.uom_id:				
-				employee = self.env['hr.employee'].search([('user_id', '=', self.user_id.id)], limit=1)
-				if employee and employee.contract_id:
-					contract = employee.contract_id
-					if contract and contract.working_hours:
-						hours_for_stage = int(stage_config.days_for_stage * self.section_id.uom_id.factor)
-						end_dt = contract.working_hours.schedule_hours(hours=hours_for_stage, day_dt=create_date)
-						end_dt = end_dt[-1][-1][-1]
-						#end_dt = tz.localize(end_dt) - localized automatically
-						#end_dt = end_dt.astimezone(pytz.utc)						
-						self.stage_deadline = end_dt								
+			if self.section_id.uom_id:
+				if stage_config.working_hours or self.section_id.default_working_hours:				
+					working_hours = stage_config.working_hours or self.section_id.default_working_hours
+					hours_for_stage = int(stage_config.days_for_stage * self.section_id.uom_id.factor)
+					end_dt = working_hours.schedule_hours(hours=hours_for_stage, day_dt=create_date)
+					end_dt = end_dt[-1][-1][-1]
+					tz = pytz.timezone(self.env.user.tz)
+					end_dt = tz.localize(end_dt)
+					end_dt = end_dt.astimezone(pytz.utc)						
+					self.stage_deadline = end_dt								
