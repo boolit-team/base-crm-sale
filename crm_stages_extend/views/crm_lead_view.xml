@@ -12,7 +12,7 @@
                         help="Go to Next Stage" class="oe_highlight"
                         attrs="{'invisible': True}"
                     />                                           
-                </button>            
+                </button>                             
                 <field name="priority" position="after">
                     <field name="stage_deadline"
                         attrs="{'invisible': [('stage_deadline', '=', False)]}"
@@ -58,6 +58,13 @@
                         help="Go to Default Stage"
                     />                    
                 </button>
+                <label for="planned_revenue" position="before">
+                    <label for="planned_profit" class="oe_edit_only"/>
+                    <h2>
+                        <field name="company_currency" invisible="1"/>
+                        <field name="planned_profit" class="oe_inline" widget='monetary' options="{'currency_field': 'company_currency'}"/>
+                    </h2>                    
+                </label>                
                 <field name="stage_id" position="replace">
                     <field name="stage_id"
                         widget="statusbar" options="{'fold_field': 'fold'}"

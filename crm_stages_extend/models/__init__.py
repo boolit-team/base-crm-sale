@@ -1,2 +1,4 @@
 import sales_team
 import crm_lead
+import calendar_event
+import crm_stage_activity

@@ -22,16 +22,18 @@
 
 
 {
-    'name': 'Sales Team Extension',
+    'name': 'CRM Stages Extension',
     'version': '1.0',
     'category': 'CRM',
     'sequence': 2,
-    'summary': 'Summary',
+    'summary': 'CRM Stages Management',
     'description': """
-	Description
+	Extends CRM stages allowing to track when stages changed, automatically generating report.
+    Prevents users from jumping through unfinished stages. Calculates deadlines for stages. Changes
+    user that is responsible in every stage if set in stages config.
 	""",
-    'author': 'Andrius Laukavičius',
-    'website': '',
+    'author': 'OERP',
+    'website': 'www.oerp.eu',
     'depends': [
         'sales_team',
         'crm',        
@@ -40,7 +42,9 @@
         'security/ir.model.access.csv',
         'views/sales_team_view.xml',
         'views/crm_lead_view.xml',
-        #'data/,        
+        'views/crm_stage_activity_view.xml',
+        'views/calendar_event_view.xml',
+        'data/schedulers.xml',        
 
     ],
     'demo': [

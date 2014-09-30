@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    <record model="ir.ui.view" id="view_calendar_event_form">
+        <field name="name">Calendar - Event Form</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <header>
+                    <field name="meet_state" nolabel="1" widget="statusbar" clickable="True"/>
+                </header>
+            </sheet>
+            <field name="location" position="after">
+                <field name="opportunity_id"/>
+            </field>
+        </field>
+    </record>
+    </data>
+</openerp>

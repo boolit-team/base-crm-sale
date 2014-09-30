@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+		<record model="ir.cron" id="ir_cron_scheduler_crm_init_activity" forcecreate="True">
+	      <field name="name">Init CRM Activity</field>
+	      <field name="active" eval="True"/>
+	      <field name="interval_number">1</field>
+	      <field name="interval_type">days</field>
+	      <field name="numbercall">-1</field>
+	      <field name="doall" eval="True"/>
+	      <field name="model" eval="'crm.stage.activity'"/>
+	      <field name="function" eval="'_init_activity'"/>
+	      <field name="args" eval="'()'"/>
+  		 </record>
+    </data>
+</openerp>
