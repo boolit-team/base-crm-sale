@@ -169,20 +169,31 @@ class crm_lead(models.Model):
     @api.one
     def case_mark_won(self):
         log_vals = self._base_log_dict(self)
-        if self.stage_id.probability != 0.0:
-            stage = self.env['crm.case.stage'].search([('probability', '=', 100.0), ('section_ids', 'in', [self.section_id.id])], limit=1)
-            if stage:
-                activity_obj = self.env['crm.stage.activity']
-                activity = activity_obj.get_activity(self, stage_id=stage.id)
-                if activity:
-                    log_vals['stage_activity_id'] = activity.id         
+        stage = self.env['crm.case.stage'].search([('probability', '=', 100.0), ('section_ids', 'in', [self.section_id.id])], limit=1)
+        if stage:
+            activity_obj = self.env['crm.stage.activity']
+            activity = activity_obj.get_activity(self, stage_id=stage.id)
+            if activity:
+                log_vals['stage_activity_id'] = activity.id         
+            self.env['crm.lead.stage_log'].create(log_vals)
+            #logging stage it gone from to won stage
+            activity2 = activity_obj.get_activity(self)
+            if activity2:
+                log_vals['stage_activity_id'] = activity2.id
                 self.env['crm.lead.stage_log'].create(log_vals)
-                #logging stage it gone from to won stage
-                activity2 = activity_obj.get_activity(self)
-                if activity2:
-                    log_vals['stage_activity_id'] = activity2.id
-                    self.env['crm.lead.stage_log'].create(log_vals)
         return super(crm_lead, self).case_mark_won()
+
+    @api.one
+    def case_mark_lost(self):
+        log_vals = self._base_log_dict(self)
+        stage = self.env['crm.case.stage'].search([('probability', '=', 0.0), ('section_ids', 'in', [self.section_id.id]), ('type', '!=', 'lead')], limit=1)
+        if stage:
+            activity_obj = self.env['crm.stage.activity']
+            activity = activity_obj.get_activity(self, stage_id=stage.id)
+            if activity:
+                log_vals['stage_activity_id'] = activity.id         
+            self.env['crm.lead.stage_log'].create(log_vals)
+        return super(crm_lead, self).case_mark_lost()
 
     @api.one
     def _compute_stage_deadline(self):
