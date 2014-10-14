@@ -58,7 +58,9 @@ class crm_lead(models.Model):
 
     stage_deadline = fields.Datetime('Stage Deadline', compute="_compute_stage_deadline")
     planned_profit = fields.Float('Expected Profit', track_visibility='always')
-
+    title_action = fields.Char('Next Action', track_visibility='onchange')
+    date_action = fields.Date('Next Action Date', select=True, track_visibility='onchange')
+    
     @api.multi
     @api.returns('crm.case.section.stage_config')
     def get_stage_config(self):
