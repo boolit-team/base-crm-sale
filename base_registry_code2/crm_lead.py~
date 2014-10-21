@@ -1,0 +1,11 @@
+from openerp.osv import osv, fields
+
+class crm_lead(osv.osv):
+    _name = 'crm.lead'
+    _inherit = 'crm.lead'
+    _columns = {
+        'company_registry': fields.char('Company Registry', help="Registry code")
+    }
+
+crm_lead()
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <!-- Opportunities Form View -->
+        <record model="ir.ui.view" id="crm_case_form_view_oppor">
+            <field name="name">Opportunities</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="attributes">
+                    <attribute name="onchange">onchange_partner_id()</attribute>
+                </field>
+                <field name="priority" position="after">
+                    <field name="vip"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
