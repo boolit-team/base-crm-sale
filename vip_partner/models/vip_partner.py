@@ -30,27 +30,47 @@ class crm_lead(models.Model):
     _inherit = 'crm.lead'
 
     vip = fields.Boolean('VIP')
-
-    '''
-    @api.model
+    
+    @api.multi
     def on_change_partner_id(self, partner_id):
         vals = super(crm_lead, self).on_change_partner_id(partner_id)
-        if self.partner_id:
-            vals['value']['vip'] = self.partner_id.vip
-        return vals    
-    '''
+        if partner_id:
+            partner = self.env['res.partner'].search([('id', '=', partner_id)])
+            vals['value']['vip'] = partner.vip
+        return vals
+
+class crm_helpdesk(models.Model):
+    _inherit = 'crm.helpdesk'
+
+    vip = fields.Boolean('VIP')
     
-    @api.onchange('partner_id')
-    def onchange_partner_id(self):
-        if self.partner_id:
-            self.vip = self.partner_id.vip
+    @api.multi
+    def on_change_partner_id(self, partner_id):
+        vals = super(crm_helpdesk, self).on_change_partner_id(partner_id)
+        if partner_id:
+            partner = self.env['res.partner'].search([('id', '=', partner_id)])
+            vals['value']['vip'] = partner.vip
+        return vals
 
 class project(models.Model):
     _inherit = 'project.project'
 
-    vip = fields.Boolean('VIP')  
+    vip = fields.Boolean('VIP')
+
+    @api.multi
+    def onchange_partner_id(self, partner_id):
+        vals = super(project, self).onchange_partner_id(partner_id)
+        if partner_id:
+            partner = self.env['res.partner'].search([('id', '=', partner_id)])
+            vals['value']['vip'] = partner.vip
+        return vals     
 
 class project_task(models.Model):
     _inherit = 'project.task'
 
-    vip = fields.Boolean('VIP')  
+    vip = fields.Boolean('VIP') 
+
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        if self.partner_id:
+            self.vip = self.partner_id.vip     

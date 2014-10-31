@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
 <openerp>
-    <data>         
+    <data>
+        <!-- Set lower priority for kanban view-->         
+        <record model="ir.actions.act_window.view" id="crm.action_crm_tag_kanban_view_oppor11">
+            <field name="sequence" eval="5"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="crm.crm_case_kanban_view_leads"/>
+            <field name="act_window_id" ref="crm.crm_case_category_act_oppor11"/>
+        </record>         
         <!-- CRM Lead Form View  -->
         <record model="ir.ui.view" id="crm_case_form_view_leads_inherit">
             <field name="name">CRM - Leads Form - Inherit</field>

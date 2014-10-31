@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Project -->
+        <record id="edit_project" model="ir.ui.view">
+            <field name="name">project.project.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <newline/>
+                    <field name="vip"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Task -->
+
+        <record id="view_task_form2" model="ir.ui.view">
+            <field name="name">project.task.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <field name="progress" position="after">
+                    <field name="vip"/>
+                </field>
+                <field name="partner_id" position="attributes">
+                    <attribute name="onchange">onchange_partner_id()</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

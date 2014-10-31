@@ -40,8 +40,8 @@
     'data': [
         #'security/ir.model.access.csv',
         'views/res_partner_view.xml',
-        #'views/project_view.xml',
-        #'views/helpdesk_view.xml',
+        'views/project_view.xml',
+        'views/crm_helpdesk_view.xml',
         'views/crm_lead_view.xml',
         #'data/,        
 
