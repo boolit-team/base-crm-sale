@@ -2,11 +2,12 @@
 
 {
     'name': "smtp_per_user",
-    'version': '0.1',
+    'version': '0.2',
     'category': 'Mail',
-    'description': """Using different smptp settings for user's outgoing emails""",
-    'author': 'llenchikk <llenchikk@rambler.ru>',
+    'description': """Using different smtp settings for user's outgoing emails""",
+    'author': 'OERP',
     'license': 'AGPL-3',
+    'website': "www.oerp.eu",
     "depends" : ['mail'],
     'data': [
         'smtp_per_user_view.xml',

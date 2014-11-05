@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 class ir_mail_server(models.Model):
     _inherit = "ir.mail_server"
 
     user_id = fields.Many2one('res.users', string="Owner")
 
-class ir_mail_server(models.Model):
-    _inherit = "ir.mail_server"
-
-    @api.one
-    def send_mail(self, message, mail_server_id=None, smtp_server=None, smtp_port=None,
+    @api.model
+    def send_email(self, message, mail_server_id=None, smtp_server=None, smtp_port=None,
                    smtp_user=None, smtp_password=None, smtp_encryption=None, smtp_debug=False):
         mail_server = self.search([('user_id', '=', self.env.uid)], limit=1)
         if mail_server:
