@@ -76,7 +76,7 @@ class crm_stage_activity(models.Model):
     
     
     @api.cr_uid
-    def init_activity(self, cr, uid, ids=None, context=None):
+    def _init_activity(self, cr, uid, ids=None, context=None):
         """
         Only For Scheduller
         """

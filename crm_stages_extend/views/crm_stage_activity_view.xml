@@ -7,9 +7,6 @@
             <field name="model">crm.stage.activity</field>
             <field name="arch" type="xml">
             <form string="Stage Activity">
-                <header>
-                    <button name="init_activity" string="Init" type="object"></button>
-                </header>
                 <group>
                     <group>
                         <field name="date"/>
