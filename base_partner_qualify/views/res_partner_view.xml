@@ -13,7 +13,8 @@
                     <field name="qualified"/>
                     <field name="show_in_name" attrs="{'invisible': [('qualified', '=', False)]}"
                         onchange="onchange_qualified()"/>
-                </xpath>                              
+                </xpath>
+            </field>                              
         </record>          
     </data>
 </openerp>        

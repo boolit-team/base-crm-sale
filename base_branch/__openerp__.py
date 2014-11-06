@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#    
-#    Odoo, Open Source Management Solution
 #
-#    Author: Andrius Laukavičius. Copyright: JSC NOD Baltic
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -16,40 +15,29 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
-
 {
-    'name': 'Qualify Partner',
+    'name': 'Partner Branches',
     'version': '1.0',
-    'category': 'Base',
-    'sequence': 10,
-    'summary': 'Qualify partner',
-    'description': """
-	Add new field to qualify as real partner. Can be used to filter partners from large
-    partners list that might have many inacurrate or dublicate contacts
-	""",
+    'depends': ['base'],
     'author': 'OERP',
-    'website': 'www.oerp.eu',
-    'depends': [
-        'base',      
-    ],
+    'description': """
+Partner Branches
+==========================================
+
+Adds parent partner field to specify root partner for branches
+
+    """,
+    'website': 'http://www.oerp.eu',
+    'category': 'crm',
+    'demo': [],
+    'test': [],
     'data': [
-        #'security/ir.model.access.csv',
-        'views/res_partner_view.xml',
-        #'data/',        
-
+      'views/res_partner_view.xml'
     ],
-    'demo': [
-    ],
-    'test': [
-
-    ],
-    'installable': True,
-    'application': True,
     'auto_install': False,
-    'images': [],
+    'installable': True,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

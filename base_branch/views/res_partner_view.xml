@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>      
+         <!--
+        Partners Extension
+        -->
+        <record id="view_partner_branch_form" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="priority">2</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">                                                            
+                <!-- Choosing Type -->  
+                <label for="is_company" string="Is a Company?" position="after">
+                    <field name="is_branch" 
+                        attrs="{'invisible': [('is_company', '=', False)]}"
+                    /> 
+                    <label for="is_branch" string="Is a Branch?"
+                        attrs="{'invisible': [('is_company', '=', False)]}" 
+                    />                                          
+                </label> 
+                <field name="parent_id" position="after">
+                    <field name="parent_root_id" 
+                        attrs="{'invisible': [('is_company', '=', False)], 
+                            'invisible': [('is_branch', '=', False)]}"
+                        placeholder="Main Partner"
+                    />
+                </field>                                   
+            </field>
+        </record>
+    </data>
+</openerp>

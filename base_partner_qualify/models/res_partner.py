@@ -32,3 +32,16 @@ class res_partner(models.Model):
     def onhange_qualified(self):
         if self.qualified:
             self.show_in_name = True
+        else:
+            self.show_in_name = False
+
+    @api.multi
+    def name_get(self):
+        res = super(res_partner, self).name_get()
+        res_dict = dict(res)
+        for record in self:
+            if record.qualified and record.show_in_name:
+                res_dict[record.id] = "%s + QLF" % (res_dict[record.id])
+
+        return res_dict.items()
+
