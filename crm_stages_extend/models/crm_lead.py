@@ -61,6 +61,10 @@ class crm_lead(models.Model):
     title_action = fields.Char('Next Action', track_visibility='onchange')
     date_action = fields.Date('Next Action Date', select=True, track_visibility='onchange')
     
+    _defaults = {
+        'probability': 1.0,
+    }
+
     @api.multi
     @api.returns('crm.case.section.stage_config')
     def get_stage_config(self):

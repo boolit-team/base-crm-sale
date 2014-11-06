@@ -65,6 +65,9 @@
                         help="Go to Default Stage"
                     />                    
                 </button>
+                <field name="probability" position="attributes">
+                    <attribute name="attrs">{'readonly': True}</attribute>
+                </field>
                 <label for="planned_revenue" position="before">
                     <label for="planned_profit" class="oe_edit_only"/>
                     <h2>
