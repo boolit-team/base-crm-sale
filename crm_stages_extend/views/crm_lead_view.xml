@@ -68,6 +68,10 @@
                 <field name="probability" position="attributes">
                     <attribute name="attrs">{'readonly': True}</attribute>
                 </field>
+                <field name="mobile" position="replace"/>
+                <field name="phone" position="after">
+                    <field name="mobile"/>
+                </field>
                 <label for="planned_revenue" position="before">
                     <label for="planned_profit" class="oe_edit_only"/>
                     <h2>

@@ -40,6 +40,7 @@ class res_partner(models.Model):
             value['is_branch'] = False
         return {'value': value, 'domain': domain}    
 
+    '''
     def name_get(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
@@ -62,7 +63,17 @@ class res_partner(models.Model):
                 name = "%s <%s>" % (name, record.email)
             res.append((record.id, name))
         return res
+    '''
 
+    @api.multi
+    def name_get(self):
+        res = super(res_partner, self).name_get()
+        res_dict = dict(res)
+        for record in self:
+            if record.parent_root_id:
+                res_dict[record.id] = "%s / %s" % (record.parent_root_id.name, res_dict[record.id])
+        return res_dict.items()
+    
     @api.multi
     def _commercial_partner_compute(self, name, args):
         """ Returns the partner that is considered the commercial

@@ -16,6 +16,8 @@
                     </group>
                     <group>
                         <field name="activities_numb"/>
+                        <field name="meetings_numb"/>
+                        <field name="phonecalls_numb"/>                        
                         <field name="users_numb"/>
                         <field name="revenue_sum"/>
                         <field name="profit_sum"/>                           
@@ -47,6 +49,8 @@
                     <field name="stage_id"/>
                     <field name="section_id"/>
                     <field name="activities_numb" sum="Total Activities"/>
+                    <field name="meetings_numb" sum="Total Meetings"/>
+                    <field name="phonecalls_numb" sum="Total Phonecalls"/>
                     <field name="users_numb" sum="Total Salesmen"/>
                     <field name="revenue_sum" sum="Total Revenue"/>
                     <field name="profit_sum" sum="Total Profit"/>               
