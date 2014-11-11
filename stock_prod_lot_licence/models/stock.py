@@ -25,6 +25,7 @@ from openerp import models, fields
 class stock_production_lot(models.Model):
     _inherit = 'stock.production.lot'
 
+    licence = fields.Boolean('Licence')
     valid_date = fields.Date('Valid Date')
     order_date = fields.Date('Order Date')
     last_possible_activ_date = fields.Date('Last Possible Activ. Date')
@@ -33,10 +34,10 @@ class stock_production_lot(models.Model):
     partner_id = fields.Many2one('res.partner', 'Partner')
     external_partner_id = fields.Many2one('res.partner', 'Licence User')
     quantity = fields.Integer('Quantity')
-    all_quantity = fields.Float('All Quantity') #Integer maybe?
+    all_quantity = fields.Integer('All Quantity') #Integer maybe?
     discount = fields.Float('Discount')
     email = fields.Char('Email')
     note_user = fields.Text('Note to Manufacturer')
     note_admin = fields.Text('Administrator Notes')
     force_system_price = fields.Float('Force System Price')
-    active = fields.Boolean('Active')
+    active = fields.Boolean('Active', default=True)

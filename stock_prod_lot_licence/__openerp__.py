@@ -32,11 +32,12 @@
 	""",
     'author': 'OERP',
     'website': 'www.oerp.eu',
-    'depends': [      
+    'depends': [
+        'stock'      
     ],
     'data': [
         #'security/ir.model.access.csv',
-        #'views/',
+        'views/stock_view.xml',
         #'data/',        
 
     ],
