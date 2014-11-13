@@ -9,9 +9,6 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <field name="title" position="after">
-                    <field name="title_group_id"/>
-                </field>
                 <field name="last_reconciliation_date" position="after">
                     <field name="empl_number"/>
                     <field name="turnover"/>
@@ -20,40 +17,5 @@
             </field>
         </record>  
 
-        <record id="view_title_group_tree" model="ir.ui.view">
-            <field name="name">Title Groups Tree</field>
-            <field name="model">res.partner.title.group</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="name"/>
-                </tree>
-            </field>
-        </record>
-
-        <record id="view_title_group_form" model="ir.ui.view">
-            <field name="name">Title Groups Form</field>
-            <field name="model">res.partner.title.group</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <group>
-                                <field name="name"/>
-                            </group>
-                            <group></group>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>        
-
-        <record id="action_title_group" model="ir.actions.act_window">
-            <field name="name">Title Groups</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">res.partner.title.group</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-        <menuitem id="menu_title_group" action="action_title_group" parent="base.menu_config_address_book" name="Title Groups" sequence="10"/>        
     </data>
 </openerp>        

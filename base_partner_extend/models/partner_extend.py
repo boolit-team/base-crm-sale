@@ -22,18 +22,9 @@
 
 from openerp import models, fields
 
-class res_partner_title_group(models.Model):
-    _name = 'res.partner.title.group'
-    _description = 'Partner Title Group'
-
-    name = fields.Char('Name')
-
-
 class res_partner(models.Model):
     _inherit = 'res.partner'
 
     empl_number = fields.Integer('Employees Number')
     turnover = fields.Float('Turnover')
     main_activity = fields.Char('Main Activity')
-    title_group_id = fields.Many2one('res.partner.title.group', 'Company Type Group')
-    
