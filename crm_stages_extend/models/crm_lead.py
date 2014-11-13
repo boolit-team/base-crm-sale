@@ -64,6 +64,7 @@ class crm_lead(models.Model):
     _defaults = {
         'probability': 1.0,
     }
+        
 
     @api.multi
     @api.returns('crm.case.section.stage_config')

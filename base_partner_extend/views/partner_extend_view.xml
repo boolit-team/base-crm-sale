@@ -12,7 +12,6 @@
                 <field name="last_reconciliation_date" position="after">
                     <field name="empl_number"/>
                     <field name="turnover"/>
-                    <field name="main_activity"/>
                 </field>
             </field>
         </record>  

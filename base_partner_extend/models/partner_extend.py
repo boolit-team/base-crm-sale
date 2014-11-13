@@ -27,4 +27,3 @@ class res_partner(models.Model):
 
     empl_number = fields.Integer('Employees Number')
     turnover = fields.Float('Turnover')
-    main_activity = fields.Char('Main Activity')
