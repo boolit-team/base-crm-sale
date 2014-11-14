@@ -44,6 +44,7 @@
         'views/crm_lead_view.xml',
         'views/crm_stage_activity_view.xml',
         'views/calendar_event_view.xml',
+        'views/crm_phonecall_view.xml',
         'data/schedulers.xml',        
 
     ],
