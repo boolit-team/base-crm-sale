@@ -26,3 +26,4 @@ class sale_order_line(models.Model):
     _inherit = 'sale.order.line'
 
     licence_id = fields.Many2one('stock.production.lot', 'Licence', domain=[('licence', '=', True)])
+    lic_key = fields.Char('Renewed/Enlarged Licence')

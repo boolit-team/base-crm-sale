@@ -34,10 +34,12 @@ class stock_production_lot(models.Model):
     partner_id = fields.Many2one('res.partner', 'Partner')
     external_partner_id = fields.Many2one('res.partner', 'Licence User')
     quantity = fields.Integer('Quantity')
-    all_quantity = fields.Integer('All Quantity') #Integer maybe?
+    all_quantity = fields.Integer('All Quantity')
     discount = fields.Float('Discount')
     email = fields.Char('Email')
     note_user = fields.Text('Note to Manufacturer')
     note_admin = fields.Text('Administrator Notes')
     force_system_price = fields.Float('Force System Price')
     active = fields.Boolean('Active', default=True)
+    renewed_prodlot_id = fields.Many2one('stock.production.lot', 'Renewed Licence', domain=[('licence', '=', True)])
+    renewed_quantity = fields.Integer('Renewed Quantity')

@@ -11,6 +11,7 @@
                     <field name="licence_id"
                         context="{'default_licence': True, 'form_view_ref': 'sale_prod_lot_licence.view_production_lot_form_licence'}"
                     />
+                    <field name="lic_key"/>
                 </xpath>
             </field>
         </record>   

@@ -48,6 +48,10 @@
                                 <field name="force_system_price"/>
                                 <field name="note_admin"/>                            
                             </group>
+                            <group string="Additional">
+                                <field name="renewed_prodlot_id"/>
+                                <field name="renewed_quantity"/>
+                            </group>
                         </group>
                     </sheet>
                 </form>
