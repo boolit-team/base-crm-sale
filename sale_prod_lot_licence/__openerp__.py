@@ -22,21 +22,22 @@
 
 
 {
-    'name': 'Lot Licences',
+    'name': 'Sale Lot Licences',
     'version': '1.0',
     'category': 'stock',
     'sequence': 2,
-    'summary': 'Stock Production Lot Licences',
+    'summary': 'Sale Licences',
     'description': """
-	implements new fields for production lots that are needed for licences management.
+	Add relationship between production lots and sale order lines.
 	""",
     'author': 'OERP',
     'website': 'www.oerp.eu',
     'depends': [
-        'stock', 'sale',      
+        'sale', 'stock_prod_lot_licence',      
     ],
     'data': [
         #'security/ir.model.access.csv',
+        'views/sale_view.xml',
         'views/stock_view.xml',
         #'data/',        
 

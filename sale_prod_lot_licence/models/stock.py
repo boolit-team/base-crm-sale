@@ -20,35 +20,9 @@
 #
 ##############################################################################
 
+from openerp import models, fields
 
-{
-    'name': 'Lot Licences',
-    'version': '1.0',
-    'category': 'stock',
-    'sequence': 2,
-    'summary': 'Stock Production Lot Licences',
-    'description': """
-	implements new fields for production lots that are needed for licences management.
-	""",
-    'author': 'OERP',
-    'website': 'www.oerp.eu',
-    'depends': [
-        'stock', 'sale',      
-    ],
-    'data': [
-        #'security/ir.model.access.csv',
-        'views/stock_view.xml',
-        #'data/',        
+class stock_production_lot(models.Model):
+    _inherit = 'stock.production.lot'
 
-    ],
-    'demo': [
-    ],
-    'test': [
-
-    ],
-    'installable': True,
-    'application': True,
-    'auto_install': False,
-    'images': [],
-}
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    sale_order_line_ids = fields.One2many('sale.order.line', 'licence_id', 'Sale Order Lines')
