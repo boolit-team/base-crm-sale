@@ -10,7 +10,7 @@
                 <group name="main_group" position="after">
                     <notebook>
                         <page string="Sales Order Lines">
-                            <field name="sale_order_line_ids"/>
+                            <field name="sale_order_line_ids" attrs="{'readonly': True}"/>
                         </page>
                     </notebook>
                 </group>
