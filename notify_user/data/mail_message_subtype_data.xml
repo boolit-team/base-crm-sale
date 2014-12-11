@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="0">
+        <!-- crm.lead-->
+        <record id="mt_lead_user" model="mail.message.subtype">
+            <field name="name">Salesman Changed to Me</field>
+            <field name="res_model">crm.lead</field>
+            <field name="description">Salesman changed</field>
+            <field name="default" eval="True"/>
+        </record>        
+
+        <record id="mt_salesteam_user" model="mail.message.subtype">
+            <field name="name">Salesman Changed to Me</field>
+            <field name="res_model">crm.case.section</field>
+            <field name="default" eval="True"/>
+            <field name="parent_id" eval="ref('mt_lead_user')"/>
+            <field name="relation_field">section_id</field>
+        </record>
+
+        <!-- crm.helpdesk-->
+        <record id="mt_helpdesk_user" model="mail.message.subtype">
+            <field name="name">Responsible Changed to Me</field>
+            <field name="res_model">crm.helpdesk</field>
+            <field name="description">Responsible changed</field>
+            <field name="default" eval="True"/>
+        </record>  
+
+        <!-- project.project-->  
+        <record id="mt_project_user" model="mail.message.subtype">
+            <field name="name">Manager Changed to Me</field>
+            <field name="res_model">project.project</field>
+            <field name="description">Manager changed</field>
+            <field name="default" eval="True"/>
+        </record>   
+
+        <!-- project.task -->
+        <record id="project.mt_task_user" model="mail.message.subtype">
+            <field name="name">Task Assignet to Me</field>
+            <field name="res_model">project.task</field>
+            <field name="description">Assignet changed</field>
+            <field name="default" eval="True"/>
+        </record>                   
+
+    </data>
+</openerp>

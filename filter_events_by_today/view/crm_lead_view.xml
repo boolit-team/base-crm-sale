@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_crm_case_opportunities_filter_inh1" model="ir.ui.view">
+            <field name="name">CRM - Opportunities Search Inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+            <field name="arch" type="xml">
+                    <filter name="unassigned" position="after">
+                        <filter string="By Today" domain="['|', ('date_action','&lt;=',((context_today())).strftime('%%Y-%%m-%%d')), ('date_action', '=', False)]"/>
+                        <filter string="Today" domain="['|', ('date_action','=',((context_today())).strftime('%%Y-%%m-%%d')), ('date_action', '=', False)]"/>
+                    </filter>
+            </field>
+        </record>  
+    </data>
+</openerp>
