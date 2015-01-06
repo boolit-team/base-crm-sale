@@ -20,10 +20,21 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
+
+class sale_order(models.Model):
+    _inherit = 'sale.order'
+    
+    partner_licence_id = fields.Many2one('res.partner', 'Licence User')
 
 class sale_order_line(models.Model):
     _inherit = 'sale.order.line'
 
     licence_id = fields.Many2one('stock.production.lot', 'Licence', domain=[('licence', '=', True)])
     lic_key = fields.Char('Renewed/Enlarged Licence')
+    general_qty = fields.Float('Licence Quantity')
+
+    @api.onchange('licence_id')
+    def onchange_licence_id(self):
+        if self.licence_id:
+            self.general_qty = self.licence_id.quantity

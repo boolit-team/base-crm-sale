@@ -7,10 +7,14 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="partner_licence_id"/>
+                </field>
                 <xpath expr="//form[@string='Sales Order Lines']//field[@name='tax_id']" position="before">
                     <field name="licence_id"
                         context="{'default_licence': True, 'form_view_ref': 'sale_prod_lot_licence.view_production_lot_form_licence'}"
                     />
+                    <field name="general_qty" onchange="onchange_licence_id()"/>
                     <field name="lic_key"/>
                 </xpath>
             </field>
