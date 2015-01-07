@@ -28,6 +28,7 @@ class res_partner(models.Model):
     qualified = fields.Boolean('Qualified')
     show_in_name = fields.Boolean('Show in Name')
 
+    '''# Disabled for now
     @api.onchange('qualified')
     def onhange_qualified(self):
         if self.qualified:
@@ -44,4 +45,5 @@ class res_partner(models.Model):
                 res_dict[record.id] = "%s + QLF" % (res_dict[record.id])
 
         return res_dict.items()
+    '''
 
