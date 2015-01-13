@@ -20,9 +20,23 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 class sale_order(models.Model):
     _inherit = 'sale.order'
 
     partner_order_id = fields.Many2one('res.partner', 'Ordering Contact', domain=[('is_company', '=', False)])
+
+    @api.multi
+    def onchange_partner_id(self, partner_id, context=None):
+        vals = super(sale_order, self).onchange_partner_id(partner_id)
+        if partner_id:
+            partner = self.env['res.partner'].search([('id', '=', partner_id)])
+            for child in partner.child_ids:
+                if child.type == 'contact':
+                    vals['value']['partner_order_id'] = child.id
+                    return vals
+            if partner.child_ids:
+                vals['value']['partner_order_id'] = partner.child_ids[0]
+                return vals
+    
