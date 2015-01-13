@@ -37,6 +37,6 @@ class sale_order(models.Model):
                     vals['value']['partner_order_id'] = child.id
                     return vals
             if partner.child_ids:
-                vals['value']['partner_order_id'] = partner.child_ids[0]
+                vals['value']['partner_order_id'] = partner.child_ids[0].id
                 return vals
     
