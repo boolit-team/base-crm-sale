@@ -20,7 +20,21 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api, _
+from openerp.exceptions import Warning
+
+class stock_production_lot_licence_type(models.Model):
+    _name = 'stock.production.lot.licence_type'
+    _description = 'Licence Type'
+
+    name = fields.Char('Name')
+    code = fields.Char('Code', help="Must match external system code if used in integration")
+
+    @api.constrains('code')
+    def _check_unique(self):
+        types = self.search([('code', '=', self.code)])
+        if types:
+            raise Warning(_("Code must be unique"))
 
 class stock_production_lot(models.Model):
     _inherit = 'stock.production.lot'
@@ -58,3 +72,4 @@ class stock_production_lot(models.Model):
     lic_cancel_user = fields.Integer('Licence Cancel User ID')
     lic_modify_date = fields.Date('Licence Modification Date')
     lic_modify_user = fields.Integer('Licence Modify User')
+    licence_type_id = fields.Many2one('stock.production.lot.licence_type', 'Licence Type')
