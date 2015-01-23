@@ -32,7 +32,7 @@ class stock_production_lot_licence_type(models.Model):
 
     @api.constrains('code')
     def _check_unique(self):
-        types = self.search([('code', '=', self.code)])
+        types = self.search([('code', '=', self.code), ('id', '!=', self.id)])
         if types:
             raise Warning(_("Code must be unique"))
 
@@ -63,7 +63,7 @@ class stock_production_lot(models.Model):
     epli = fields.Char('EPLI')
     licence_key = fields.Char('Licence Key')
     common_tag = fields.Char('Common Tag')
-    bundle_product_id = fields.Many2one('Bundle Product')
+    bundle_product_id = fields.Many2one('product.product', 'Bundle Product')
     bundle_quantity = fields.Integer('Bundle Quantity')
     licence_parent_id = fields.Many2one('stock.production.lot', 'Parent Licence')
     lic_create_date = fields.Date('Licence Creation Date')

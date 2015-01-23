@@ -36,7 +36,7 @@
         'stock', 'sale',      
     ],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/stock_view.xml',
         #'data/',        
 
