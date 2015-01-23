@@ -20,21 +20,35 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
 
-class sale_order(models.Model):
-    _inherit = 'sale.order'
-    
-    partner_licence_id = fields.Many2one('res.partner', 'Licence User')
+{
+    'name': 'Task Tree Deadline',
+    'version': '1.0',
+    'category': 'Base',
+    'sequence': 2,
+    'summary': 'Task Tree Deadline',
+    'description': """
+	Adds deadline fields in task tree view
+	""",
+    'author': 'OERP',
+    'website': 'www.oerp.eu',
+    'depends': [
+    'project'      
+    ],
+    'data': [
+        #'security/ir.model.access.csv',
+        'views/task_view.xml',
+        #'data/',        
 
-class sale_order_line(models.Model):
-    _inherit = 'sale.order.line'
+    ],
+    'demo': [
+    ],
+    'test': [
 
-    licence_id = fields.Many2one('stock.production.lot', 'Licence', domain=[('licence', '=', True)])
-    lic_key = fields.Char('Renewed/Enlarged Licence')
-    general_qty = fields.Float('Licence Quantity')
-
-    @api.onchange('licence_id')
-    def onchange_licence_id(self):
-        if self.licence_id:
-            self.general_qty = self.licence_id.all_quantity
+    ],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+    'images': [],
+}
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

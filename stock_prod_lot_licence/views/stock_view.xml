@@ -53,6 +53,32 @@
                                 <field name="renewed_quantity"/>
                             </group>
                         </group>
+                        <notebook name="main_note">
+                            <page string="ESET specific">
+                                <group>
+                                    <group string="Licence Info">
+                                        <field name="username"/>
+                                        <field name="password"/>
+                                        <field name="epli"/>
+                                        <field name="licence_key"/>
+                                        <field name="common_tag"/>
+                                    </group>
+                                    <group string="Bundle &amp; Other">
+                                        <field name="bundle_product_id"/>
+                                        <field name="bundle_quantity"/>
+                                        <field name="licence_parent_id"/>
+                                    </group>
+                                    <group string="System Info">
+                                        <field name="lic_create_date" attrs="{'readonly': True}"/>
+                                        <field name="lic_create_user" attrs="{'readonly': True}"/>
+                                        <field name="lic_cancel_date" attrs="{'readonly': True}"/>
+                                        <field name="lic_cancel_user" attrs="{'readonly': True}"/>
+                                        <field name="lic_modify_date" attrs="{'readonly': True}"/>
+                                        <field name="lic_modify_user" attrs="{'readonly': True}"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
