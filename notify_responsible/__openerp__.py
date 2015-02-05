@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
-#
-#    Author: Andrius Laukavičius. Copyright JSC NOD Baltic
 #    
+#    Odoo, Open Source Management Solution
+#
+#    Author: Andrius Laukavičius. Copyright: JSC NOD Baltic
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,24 +16,27 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
 #
 ##############################################################################
-from openerp import models
-from openerp.addons.project.project import task as orig_task
 
-class project(models.Model):
-    _inherit = 'project.project'
+{
+    'name': 'Notify Responsible',
+    'version': '1.0',
+    'depends': ['crm_helpdesk', 'project'],
+    'author': 'OERP',
+    'description': """
+Modifies notification when user is set responsible in a way that only
+that user will be notified excluding other followers.
 
-    _track = {'user_id': {
-            'notify_user.mt_project_user': lambda self, cr, uid, obj, ctx=None: obj.user_id.id != uid
-        }
-    }
-
-class task(models.Model):
-    _inherit = 'project.task'
-
-    _track = orig_task._track
-    _track['user_id'] = {
-        'project.mt_task_assigned': lambda self, cr, uid, obj, ctx=None: obj.user_id.id != uid
-    }
+    """,
+    'website': 'http://www.oerp.eu',
+    'category': 'notify',
+    'demo': [],
+    'test': [],
+    'data': [
+      'data/mail_message_subtype_data.xml'
+    ],
+    'auto_install': False,
+    'installable': True,
+}
