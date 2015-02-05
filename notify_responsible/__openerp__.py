@@ -22,12 +22,14 @@
 
 {
     'name': 'Notify Responsible',
-    'version': '1.0',
+    'version': '1.1',
     'depends': ['crm_helpdesk', 'project'],
     'author': 'OERP',
+    'summary': 'Get notification if you are set responsible',
     'description': """
-Modifies notification when user is set responsible in a way that only
-that user will be notified excluding other followers.
+Adds new notification option. When user is set responsible only
+that user will be notified excluding other followers. This way other followers won't 
+get notifications they might not need.
 
     """,
     'website': 'http://www.oerp.eu',
