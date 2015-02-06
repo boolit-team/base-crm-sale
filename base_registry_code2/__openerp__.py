@@ -21,7 +21,7 @@
 
 {
     'name': 'Company Registry Code',
-    'version': '1.0',
+    'version': '1.1',
     'depends': ['base_vat', 'crm'],
     'author': 'OERP',
     'description': """
