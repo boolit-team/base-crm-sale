@@ -25,11 +25,11 @@
     'name': 'Opportunity Cancel Reasons',
     'version': '1.0',
     'category': 'Reasons',
-    'sequence': 2,
     'summary': 'Manage Cancel Reasons',
     'description': """
 	Lets you define and choose cancel reasons for Opportunities.
-    Uses base_reason module as a base for reason management.
+    Uses base_reason module as a base for reason management. 
+    Cancel reasons become visible when opportunity is cancelled.
 	""",
     'author': 'OERP',
     'website': 'www.oerp.eu',
@@ -48,7 +48,7 @@
 
     ],
     'installable': True,
-    'application': True,
+    'application': False,
     'auto_install': False,
     'images': [],
 }

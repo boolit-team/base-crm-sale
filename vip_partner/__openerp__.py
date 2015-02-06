@@ -25,7 +25,6 @@
     'name': 'VIP Partner',
     'version': '1.0',
     'category': 'Partner',
-    'sequence': 2,
     'summary': 'VIP Partner',
     'description': """
 	Adds VIP check for partner and automatically assigns such value
@@ -52,7 +51,6 @@
 
     ],
     'installable': True,
-    'application': True,
     'auto_install': False,
     'images': [],
 }

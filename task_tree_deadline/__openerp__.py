@@ -24,8 +24,7 @@
 {
     'name': 'Task Tree Deadline',
     'version': '1.0',
-    'category': 'Base',
-    'sequence': 2,
+    'category': 'project',
     'summary': 'Task Tree Deadline',
     'description': """
 	Adds deadline fields in task tree view

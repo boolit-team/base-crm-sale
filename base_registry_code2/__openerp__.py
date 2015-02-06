@@ -22,13 +22,15 @@
 {
     'name': 'Company Registry Code',
     'version': '1.1',
+    'summary': 'Company Registry for partner and lead',
     'depends': ['base_vat', 'crm'],
     'author': 'OERP',
     'description': """
 Address Book
 ==========================================
 
-Adds new field - Company Registry Code in partners object and also in opportunities. 
+Adds new field - Company Registry Code in partners and also in leads. 
+When contact is created from lead, also fills Company Registry if it was filled in lead. 
 
     """,
     'website': 'http://www.oerp.eu',

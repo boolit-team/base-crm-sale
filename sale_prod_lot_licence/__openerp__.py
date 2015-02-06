@@ -25,7 +25,6 @@
     'name': 'Sale Lot Licences',
     'version': '1.0',
     'category': 'stock',
-    'sequence': 2,
     'summary': 'Sale Licences',
     'description': """
 	Add relationship between production lots and sale order lines.
@@ -48,7 +47,6 @@
 
     ],
     'installable': True,
-    'application': True,
     'auto_install': False,
     'images': [],
 }

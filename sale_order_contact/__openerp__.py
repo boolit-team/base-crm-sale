@@ -25,10 +25,9 @@
     'name': 'Ordering Contact',
     'version': '1.0',
     'category': 'Base',
-    'sequence': 2,
     'summary': 'Sale Ordering Contact',
     'description': """
-	Adds sale ordering contact
+	Adds sale ordering contact in sale order.
 	""",
     'author': 'OERP',
     'website': 'www.oerp.eu',

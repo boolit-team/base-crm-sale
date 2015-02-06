@@ -25,7 +25,6 @@
     'name': 'Product Manufacturer',
     'version': '1.0',
     'category': 'product',
-    'sequence': 2,
     'summary': 'Product Manufacturer Info',
     'description': """
 	Adds field to choose manufacturer in product from partners list and 
@@ -48,7 +47,6 @@
 
     ],
     'installable': True,
-    'application': True,
     'auto_install': False,
     'images': [],
 }

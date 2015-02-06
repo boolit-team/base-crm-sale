@@ -25,11 +25,11 @@
     'name': 'Contract Termination Reasons',
     'version': '1.0',
     'category': 'Reasons',
-    'sequence': 2,
     'summary': 'Manage Termination Reasons',
     'description': """
 	Lets you define and choose termination reasons for Contracts.
-    Uses base_reason module as a base for reason management.
+    Uses base_reason module as a base for reason management. Termination reasons become visible
+    when contract end date is specified.
 	""",
     'author': 'OERP',
     'website': 'www.oerp.eu',
@@ -48,7 +48,6 @@
 
     ],
     'installable': True,
-    'application': True,
     'auto_install': False,
     'images': [],
 }

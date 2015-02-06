@@ -28,7 +28,7 @@
     'sequence': 2,
     'summary': 'Stock Production Lot Licences',
     'description': """
-	implements new fields for production lots that are needed for licences management.
+	Implements new fields for production lots that are needed for licences management.
 	""",
     'author': 'OERP',
     'website': 'www.oerp.eu',

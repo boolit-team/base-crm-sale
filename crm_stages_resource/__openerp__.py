@@ -22,10 +22,9 @@
 
 
 {
-    'name': 'Stage Deadline Calculation ',
+    'name': 'Stage Deadline Calculation',
     'version': '1.0',
     'category': 'CRM Resources management',
-    'sequence': 2,
     'summary': 'Stages Deadline Calculation Extension',
     'description': """
 	Extends stage deadline calculation to take in considarion users working time.
@@ -49,7 +48,6 @@
 
     ],
     'installable': True,
-    'application': True,
     'auto_install': False,
     'images': [],
 }

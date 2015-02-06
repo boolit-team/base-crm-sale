@@ -25,7 +25,6 @@
     'name': 'CRM Stages Extension',
     'version': '1.0',
     'category': 'CRM',
-    'sequence': 2,
     'summary': 'CRM Stages Management',
     'description': """
 	Extends CRM stages allowing to track when stages changed, automatically generating report.

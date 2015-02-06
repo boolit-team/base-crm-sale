@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': "smtp_per_user",
+    'name': "SMTP Per User",
     'version': '0.2',
+    'summary': 'Send letters from Odoo using your own mail',
     'category': 'Mail',
-    'description': """Using different smtp settings for user's outgoing emails""",
+    'description': """Can configure different mail servers per user""",
     'author': 'OERP',
     'license': 'AGPL-3',
     'website': "www.oerp.eu",
