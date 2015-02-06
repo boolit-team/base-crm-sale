@@ -20,10 +20,28 @@
 #
 ##############################################################################
 
-from openerp import models, fields
-from openerp import api
+from openerp import models, fields, api
+from openerp.osv import fields as old_fields
+from openerp.addons.base.res.res_partner import res_partner as res_partner_orig
+
 class res_partner(models.Model):
     _inherit = 'res.partner'
+ 
+    _display_name_store_triggers = {
+        'res.partner': (lambda self,cr,uid,ids,context=None: self.search(cr, uid, [('id','child_of',ids)], context=dict(active_test=False)),
+                        ['parent_id', 'is_company', 'name', 'parent_root_id', 'is_branch'], 10)
+    }
+
+    _commercial_partner_store_triggers = {
+        'res.partner': (lambda self,cr,uid,ids,context=None: self.search(cr, uid, [('id','child_of',ids)], context=dict(active_test=False)),
+                        ['parent_id', 'is_company', 'parent_root_id', 'is_branch'], 10)
+    }    
+
+    _columns = {
+        'display_name': old_fields.function(res_partner_orig._display_name, type='char', string='Name', store=_display_name_store_triggers, select=True),
+        'commercial_partner_id': old_fields.function(res_partner_orig._commercial_partner_id, type='many2one', relation='res.partner', 
+            string='Commercial Entity', store=_commercial_partner_store_triggers),
+    }
 
     is_branch = fields.Boolean('Is Branch?')
     parent_root_id = fields.Many2one('res.partner', 'Main Partner', domain=[('is_company', '=', True), ('is_branch', '=', False)])
@@ -40,37 +58,12 @@ class res_partner(models.Model):
             value['is_branch'] = False
         return {'value': value, 'domain': domain}    
 
-    '''
-    def name_get(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        if isinstance(ids, (int, long)):
-            ids = [ids]
-        res = []
-        for record in self.browse(cr, uid, ids, context=context):
-            name = record.name
-            if record.parent_id and not record.is_company:
-                name =  "%s, %s" % (record.parent_id.name, name)
-            if record.parent_root_id:
-                name = "%s / %s" % (record.parent_root_id.name, name)
-            if context.get('show_address_only'):
-                name = self._display_address(cr, uid, record, without_company=True, context=context)
-            if context.get('show_address'):
-                name = name + "\n" + self._display_address(cr, uid, record, without_company=True, context=context)
-            name = name.replace('\n\n','\n')
-            name = name.replace('\n\n','\n')
-            if context.get('show_email') and record.email:
-                name = "%s <%s>" % (name, record.email)
-            res.append((record.id, name))
-        return res
-    '''
-
     @api.multi
     def name_get(self):
         res = super(res_partner, self).name_get()
         res_dict = dict(res)
         for record in self:
-            if record.parent_root_id:
+            if record.parent_root_id and record.is_branch:
                 res_dict[record.id] = "%s / %s" % (record.parent_root_id.name, res_dict[record.id])
         return res_dict.items()
     
@@ -81,6 +74,6 @@ class res_partner(models.Model):
         for all commercial fields (see :py:meth:`~_commercial_fields`) """
         results = super(res_partner, self)._commercial_partner_compute(name, args)
         for partner in self:
-            if partner.is_company and partner.is_branch:
+            if partner.is_company and partner.is_branch and partner.parent_root_id:
                 results[partner.id] = partner.parent_root_id.id
         return results
