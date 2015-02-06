@@ -22,6 +22,7 @@
 {
     'name': 'Partner Branches',
     'version': '1.1',
+    'summary': 'Create partner branches',
     'depends': ['base'],
     'author': 'OERP',
     'description': """

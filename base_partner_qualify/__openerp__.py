@@ -29,7 +29,7 @@
     'summary': 'Qualify partner',
     'description': """
 	Add new field to qualify as real partner. Can be used to filter partners from large
-    partners list that might have many inacurrate or dublicate contacts
+    partners list that might have many inacurrate or dublicate contacts.
 	""",
     'author': 'OERP',
     'website': 'www.oerp.eu',

@@ -28,7 +28,7 @@
 Address Book
 ==========================================
 
-Adds new field - Company Registry Code in partners object. 
+Adds new field - Company Registry Code in partners object and also in opportunities. 
 
     """,
     'website': 'http://www.oerp.eu',

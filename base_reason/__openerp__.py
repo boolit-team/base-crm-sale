@@ -25,7 +25,6 @@
     'name': 'Reasons Management',
     'version': '1.0',
     'category': 'Reasons',
-    'sequence': 2,
     'summary': 'Reasons Management Tree',
     'description': """
 	Base module to manage reasons for various models for various things.

@@ -28,7 +28,7 @@
     'sequence': 2,
     'summary': 'Partner extension',
     'description': """
-	Extends partner model with new fields
+	Extends partner model with two new fields - 'Employees Number' and 'Turnover'.
 	""",
     'author': 'OERP',
     'website': 'www.oerp.eu',
@@ -47,7 +47,7 @@
 
     ],
     'installable': True,
-    'application': True,
+    'application': False,
     'auto_install': False,
     'images': [],
 }
