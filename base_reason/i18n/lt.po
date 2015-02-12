@@ -1,0 +1,182 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* base_reason
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-12 09:59+0000\n"
+"PO-Revision-Date: 2015-02-12 09:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_reason
+#: model:ir.actions.act_window,help:base_reason.tier_one_act
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create Tier One reasons.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Paspauskit sukurti pirmo lygio priežastį.\n"
+"              </p>\n"
+"            "
+
+#. module: base_reason
+#: model:ir.actions.act_window,help:base_reason.tier_three_act
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create Tier Three reasons.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Paspauskit sukurti trečio lygio priežastį.\n"
+"              </p>\n"
+"            "
+
+#. module: base_reason
+#: model:ir.actions.act_window,help:base_reason.tier_two_act
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create Tier Two reasons.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Paspauskit sukurti antro lygio priežastį\n"
+"              </p>\n"
+"            "
+
+#. module: base_reason
+#: help:base.reason.tier.one,model_ids:0
+msgid "Can be used for specific implementation to only show reasons where you want"
+msgstr "Gali būti naudojamas kaip specifinė implementacija, rodyti priežastis bet kurioje vietoje"
+
+#. module: base_reason
+#: field:base.reason,create_uid:0
+#: field:base.reason.tier.one,create_uid:0
+#: field:base.reason.tier.three,create_uid:0
+#: field:base.reason.tier.two,create_uid:0
+msgid "Created by"
+msgstr "Sukūrė"
+
+#. module: base_reason
+#: field:base.reason,create_date:0
+#: field:base.reason.tier.one,create_date:0
+#: field:base.reason.tier.three,create_date:0
+#: field:base.reason.tier.two,create_date:0
+msgid "Created on"
+msgstr "Sukūrtimo laikas"
+
+#. module: base_reason
+#: field:base.reason,details:0
+msgid "Details"
+msgstr "Detalės"
+
+#. module: base_reason
+#: field:base.reason.tier.one,model_ids:0
+msgid "Filter to"
+msgstr "Atfilruoti pagal"
+
+#. module: base_reason
+#: field:base.reason.tier.one,name:0
+msgid "First Tier Reason"
+msgstr "Pirmo lygio priežastis"
+
+#. module: base_reason
+#: field:base.reason,id:0
+#: field:base.reason.tier.one,id:0
+#: field:base.reason.tier.three,id:0
+#: field:base.reason.tier.two,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_reason
+#: field:base.reason,write_uid:0
+#: field:base.reason.tier.one,write_uid:0
+#: field:base.reason.tier.three,write_uid:0
+#: field:base.reason.tier.two,write_uid:0
+msgid "Last Updated by"
+msgstr "Paskutinį kartą atnaujino"
+
+#. module: base_reason
+#: field:base.reason,write_date:0
+#: field:base.reason.tier.one,write_date:0
+#: field:base.reason.tier.three,write_date:0
+#: field:base.reason.tier.two,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: base_reason
+#: field:base.reason.tier.three,parent_id:0
+#: field:base.reason.tier.two,parent_id:0
+msgid "Parent"
+msgstr "Aukštesnis lygmuo"
+
+#. module: base_reason
+#: model:ir.model,name:base_reason.model_base_reason
+msgid "Reasons"
+msgstr "Priežastys"
+
+#. module: base_reason
+#: model:ir.ui.menu,name:base_reason.menu_reasons_config
+msgid "Reasons Config"
+msgstr "Priežasčių nustatymai"
+
+#. module: base_reason
+#: field:base.reason.tier.two,name:0
+msgid "Second Tier Reason"
+msgstr "Antro lygmens priežastis"
+
+#. module: base_reason
+#: field:base.reason.tier.three,name:0
+msgid "Third Tier Reason"
+msgstr "Trečio lygmens priežastis"
+
+#. module: base_reason
+#: field:base.reason,tier_one_id:0
+#: model:ir.model,name:base_reason.model_base_reason_tier_one
+msgid "Tier One Reason"
+msgstr "Pirmo lygmens priežastis"
+
+#. module: base_reason
+#: view:base.reason.tier.one:base_reason.tier_one_form_view
+#: view:base.reason.tier.one:base_reason.tier_one_tree_view
+#: model:ir.actions.act_window,name:base_reason.tier_one_act
+#: model:ir.ui.menu,name:base_reason.menu_tier_one
+msgid "Tier One Reasons"
+msgstr "Pirmo lygmens priežastys"
+
+#. module: base_reason
+#: field:base.reason,tier_three_id:0
+#: model:ir.model,name:base_reason.model_base_reason_tier_three
+msgid "Tier Three Reason"
+msgstr "Trečio lygmens priežastis"
+
+#. module: base_reason
+#: view:base.reason.tier.three:base_reason.tier_three_form_view
+#: view:base.reason.tier.three:base_reason.tier_three_tree_view
+#: model:ir.ui.menu,name:base_reason.menu_tier_three
+msgid "Tier Three Reasons"
+msgstr "Trečio lygmens priežastys"
+
+#. module: base_reason
+#: field:base.reason,tier_two_id:0
+#: model:ir.model,name:base_reason.model_base_reason_tier_two
+msgid "Tier Two Reason"
+msgstr "Antro lygmens priežastis"
+
+#. module: base_reason
+#: view:base.reason.tier.two:base_reason.tier_two_form_view
+#: view:base.reason.tier.two:base_reason.tier_two_tree_view
+#: model:ir.actions.act_window,name:base_reason.tier_two_act
+#: model:ir.ui.menu,name:base_reason.menu_tier_two
+msgid "Tier Two Reasons"
+msgstr "Antro lygmens priežastys"
+
+#. module: base_reason
+#: model:ir.actions.act_window,name:base_reason.tier_three_act
+msgid "Tier three Reasons"
+msgstr "Trečio lygmens priežastys"
+
