@@ -1,0 +1,1 @@
+import sale_fast_cancel
