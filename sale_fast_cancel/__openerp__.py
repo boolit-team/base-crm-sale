@@ -24,7 +24,7 @@
 {
     'name': 'Sale Fast Cancel',
     'version': '1.0',
-    'category': 'Sale',
+    'category': 'Sales',
     'summary': 'Cancel Sale Order with one button',
     'description': """
 	When cancelling sale order, if there are related invoices or delivery orders. It automatically cancels it too.
