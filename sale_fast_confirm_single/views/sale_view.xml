@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_order_remote_confirm_form" model="ir.ui.view">
+            <field name="name">sale.order.form - Remote Confirm</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_fast_confirm.view_order_confirm_form"/>
+            <field name="arch" type="xml">
+                    <!-- Replace method call on confirm button -->
+                    <button name="order_process_now" position="replace"/>
+                    <button name="action_button_confirm" states="draft" position="attributes">
+                        <attribute name="name">order_process_now</attribute>
+                    </button>
+                    <button name="action_button_confirm" states="sent" position="attributes">
+                        <attribute name="name">order_process_now</attribute>
+                    </button>                    
+            </field>
+        </record>
+    </data>
+</openerp>
