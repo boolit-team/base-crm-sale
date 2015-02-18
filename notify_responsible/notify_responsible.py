@@ -47,6 +47,13 @@ class crm_helpdesk(models.Model):
                     vals['message_follower_ids'] = [(4, user.partner_id.id)]
         return super(crm_helpdesk, self).write(vals)
 
+    @api.model
+    def create(self, vals):
+        if vals.get('user_id') and vals['user_id'] != self.env.uid:
+            user = self.env['res.users'].browse(vals['user_id'])
+            vals['message_follower_ids'] = [(4, user.partner_id.id)]
+        return super(crm_helpdesk, self).create(vals)
+
 class project(models.Model):
     _inherit = 'project.project'
 
