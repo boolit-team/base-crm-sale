@@ -28,15 +28,17 @@ class sale_order(models.Model):
     partner_order_id = fields.Many2one('res.partner', 'Ordering Contact', domain=[('is_company', '=', False)])
 
     @api.multi
-    def onchange_partner_id(self, partner_id, context=None):
+    def onchange_partner_id(self, partner_id):
         vals = super(sale_order, self).onchange_partner_id(partner_id)
         if partner_id:
             partner = self.env['res.partner'].search([('id', '=', partner_id)])
             for child in partner.child_ids:
                 if child.type == 'contact':
                     vals['value']['partner_order_id'] = child.id
+                    print vals
                     return vals
             if partner.child_ids:
                 vals['value']['partner_order_id'] = partner.child_ids[0].id
-                return vals
+        print vals
+        return vals
     
