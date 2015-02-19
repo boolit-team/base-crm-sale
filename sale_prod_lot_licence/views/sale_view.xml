@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
-                    <field name="partner_licence_id"/>
+                    <field name="partner_licence_id" attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
                 </field>
                 <xpath expr="//form[@string='Sales Order Lines']//field[@name='tax_id']" position="before">
                     <field name="licence_id"
