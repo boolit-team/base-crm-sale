@@ -35,10 +35,8 @@ class sale_order(models.Model):
             for child in partner.child_ids:
                 if child.type == 'contact':
                     vals['value']['partner_order_id'] = child.id
-                    print vals
                     return vals
             if partner.child_ids:
                 vals['value']['partner_order_id'] = partner.child_ids[0].id
-        print vals
         return vals
     
