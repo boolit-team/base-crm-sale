@@ -17,6 +17,9 @@
                     <field name="general_qty" onchange="onchange_licence_id()"/>
                     <field name="lic_key"/>
                 </xpath>
+                <div name="discount" groups="sale.group_discount_per_so_line" position="after">
+                    <field name="note_user"/>
+                </div>
             </field>
         </record>   
 
