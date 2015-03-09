@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form - Licence</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form[@string='Sales Order Lines']//field[@name='tax_id']" position="before">
+                    <field name="general_qty" onchange="onchange_general_qty()"/>
+                </xpath>
+            </field>
+        </record>   
+
+    </data>
+</openerp>
