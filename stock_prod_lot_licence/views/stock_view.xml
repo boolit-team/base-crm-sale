@@ -16,7 +16,7 @@
        <record id="view_production_lot_form_licence" model="ir.ui.view">
             <field name="name">stock.production.lot.form</field>
             <field name="model">stock.production.lot</field>
-            <field name="priority" eval="100"/>
+            <field name="priority" eval="5"/>
             <field name="arch" type="xml">
                 <form string="Serial Number">
                     <sheet>
