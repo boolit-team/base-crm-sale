@@ -32,8 +32,7 @@ class sale_order_line(models.Model):
 
     licence_id = fields.Many2one('stock.production.lot', 'Licence', domain=[('licence', '=', True)])
     lic_key = fields.Char('Renewed/Enlarged Licence')
-    general_qty = fields.Integer('Licence Quantity')
-    note_user = fields.Text('Note')
+    note_user = fields.Text('Note to Manufacturer')
 
     @api.onchange('licence_id')
     def onchange_licence_id(self):

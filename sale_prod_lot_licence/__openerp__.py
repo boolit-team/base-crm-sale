@@ -32,7 +32,7 @@
     'author': 'OERP',
     'website': 'www.oerp.eu',
     'depends': [
-        'sale', 'stock_prod_lot_licence',      
+        'sale_measure_type', 'stock_prod_lot_licence',      
     ],
     'data': [
         #'security/ir.model.access.csv',
