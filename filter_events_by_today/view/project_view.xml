@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="project.view_project_project_filter"/>
         <field name="arch" type="xml">
         <xpath expr="/search/separator[2]" position="after">
-            <filter string="End By Today" domain="[('date','&lt;=',((context_today())).strftime('%%Y-%%m-%%d'))]"/>
+            <filter string="By Today" domain="['&amp;', ('state', 'not in', ('template', 'cancelled', 'close')), '|', ('date_start','&lt;=', ((context_today())).strftime('%%Y-%%m-%%d')), '|', ('date','&lt;=', ((context_today())).strftime('%%Y-%%m-%%d')), '|', ('date_start', '=', False), ('date', '=', False) ]"/>
             <separator/>        
         </xpath>
         </field>
@@ -20,7 +20,7 @@
         <field name="inherit_id" ref="project.view_task_search_form"/>
         <field name="arch" type="xml">
         <xpath expr="/search/separator[1]" position="after">
-            <filter string="By Today" domain="[('date_deadline','&lt;=',((context_today())).strftime('%%Y-%%m-%%d'))]"/>
+            <filter string="By Today" domain="['&amp;', ('progress', '!=', 100.0), '|', ('date_deadline','&lt;=', ((context_today())).strftime('%%Y-%%m-%%d')), '|', ('date_end','&lt;=', ((context_today())).strftime('%%Y-%%m-%%d')), '|', ('date_start','&lt;=', ((context_today())).strftime('%%Y-%%m-%%d')), '|', ('date_deadline', '=', False), '|', ('date_end', '=', False), ('date_start', '=', False) ]"/>
             <separator/>        
         </xpath>
         </field>
