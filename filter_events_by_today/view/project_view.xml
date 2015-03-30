@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
         <xpath expr="/search/separator[2]" position="after">
             <filter string="By Today" domain="['&amp;', ('state', 'not in', ('template', 'cancelled', 'close')), '|', ('date','&lt;=', ((context_today())).strftime('%%Y-%%m-%%d')), ('date', '=', False) ]"/>
+            <filter string="To Do" domain="[('state', 'not in', ('template', 'cancelled', 'close'))]"/>            
             <separator/>        
         </xpath>
         </field>
@@ -21,6 +22,7 @@
         <field name="arch" type="xml">
         <xpath expr="/search/separator[1]" position="after">
             <filter string="By Today" domain="['&amp;', ('progress', '!=', 100.0), '|', ('date_deadline','&lt;=', ((context_today())).strftime('%%Y-%%m-%%d')), ('date_deadline', '=', False)]"/>
+            <filter string="To Do" domain="[('progress', '!=', 100.0)]"/>            
             <separator/>        
         </xpath>
         </field>

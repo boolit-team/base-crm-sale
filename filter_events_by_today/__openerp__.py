@@ -19,17 +19,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
 #
 ##############################################################################
-#Tes
 
 {
     'name': 'Filter Events By Today',
-    'version': '1.0',
+    'version': '1.1',
     'category': 'Filters',
     'description': """
 Filter Events By Today
 =============================================================
 
-Adds Filter 'By Today', that filters records up to today. Filters will be added in opportunities, schedulled phonecalls
+Adds filters such as 'By Today', 'Today', 'To Do', that filters records up to today or the ones that are not done. Filters will be added in opportunities, schedulled phonecalls
 project tasks and projects.
     """,
     'author': 'OERP',

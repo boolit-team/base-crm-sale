@@ -9,6 +9,7 @@
                     <filter name="unassigned" position="after">
                         <filter string="By Today" domain="['|', ('date_action','&lt;=',((context_today())).strftime('%%Y-%%m-%%d')), ('date_action', '=', False), '&amp;', ('probability', '!=', 0.0), ('probability', '!=', 100.0)]"/>
                         <filter string="Today" domain="['|', ('date_action','=',((context_today())).strftime('%%Y-%%m-%%d')), ('date_action', '=', False), '&amp;', ('probability', '!=', 0.0), ('probability', '!=', 100.0)]"/>
+                        <filter string="To Do" domain="[('probability', '!=', 0.0), ('probability', '!=', 100.0)]"/>                        
                     </filter>
             </field>
         </record>  
