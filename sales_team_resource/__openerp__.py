@@ -3,7 +3,7 @@
 #    
 #    Odoo, Open Source Management Solution
 #
-#    Author: Andrius Laukavičius. Copyright: JSC NOD Baltic
+#    Author: Andrius Laukavičius. Copyright: JSC Boolit
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,25 +22,22 @@
 
 
 {
-    'name': 'Stage Deadline Calculation',
-    'version': '1.1',
-    'category': 'CRM Resources management',
-    'summary': 'Stages Deadline Calculation Extension',
+    'name': 'Sales Team Resources',
+    'version': '0.1',
+    'category': 'Base',
+    'summary': 'Resources',
     'description': """
-	Extends stage deadline calculation to take in considarion users working time.
+    Adds fields to manage resources for Sales Teams.
 	""",
     'author': 'OERP',
     'website': 'www.oerp.eu',
-    'depends': [
-        'crm_stages_extend',
-        'product',
-        'resource',
-        'sales_team_resource',      
+    'depends': [  
+        'crm',    
     ],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/sales_team_view.xml',
-        #'data/,        
+        #'data/',        
 
     ],
     'demo': [
@@ -49,6 +46,7 @@
 
     ],
     'installable': True,
+    'application': False,
     'auto_install': False,
     'images': [],
 }

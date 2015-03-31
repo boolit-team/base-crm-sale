@@ -26,10 +26,4 @@ class crm_case_section_stage_config(models.Model):
     _inherit = 'crm.case.section.stage_config'
 
     working_hours = fields.Many2one('resource.calendar', 'Working Schedule')
-
-class crm_case_section(models.Model):
-    _inherit = 'crm.case.section'
-
-    uom_id = fields.Many2one('product.uom', 'Work. Hr UOM')
-    default_working_hours = fields.Many2one('resource.calendar', 'Default Working Schedule')
   

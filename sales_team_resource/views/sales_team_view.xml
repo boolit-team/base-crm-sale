@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>         
+         <record id="sales_team_form_view_in_crm" model="ir.ui.view">
+            <field name="name">crm.case.section.form - Resource</field>
+            <field name="model">crm.case.section</field>
+             <field name="inherit_id" ref="crm.sales_team_form_view_in_crm"/>
+            <field name="arch" type="xml">
+                <field name="alias_contact" position="after">
+                    <field name="uom_id"/>
+                    <field name="default_working_hours"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

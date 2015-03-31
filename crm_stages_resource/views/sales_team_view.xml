@@ -6,10 +6,6 @@
             <field name="model">crm.case.section</field>
              <field name="inherit_id" ref="crm_stages_extend.sales_team_form_view_in_crm_inherit"/>
             <field name="arch" type="xml">
-                <group name="second" position="inside">
-                    <field name="uom_id"/>
-                    <field name="default_working_hours"/>
-                </group>
                 <field name="back_stage_id" position="after">
                     <field name="working_hours"/>
                 </field>
