@@ -52,7 +52,7 @@ class crm_helpdesk(models.Model):
         if vals.get('user_id') and vals['user_id'] != self.env.uid:
             user = self.env['res.users'].browse(vals['user_id'])
             if vals.get('message_follower_ids'):
-                vals['message_follower_ids'] = vals['message_follower_ids'].append((4, user.partner_id.id))
+                vals['message_follower_ids'].append((4, user.partner_id.id))
             else:
                 vals['message_follower_ids'] = [(4, user.partner_id.id)]
         return super(crm_helpdesk, self).create(vals)
