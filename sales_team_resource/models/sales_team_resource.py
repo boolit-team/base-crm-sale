@@ -20,11 +20,12 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 class crm_case_section(models.Model):
     _inherit = 'crm.case.section'
 
-    uom_id = fields.Many2one('product.uom', 'Work. UOM')
+    uom_id = fields.Many2one('product.uom', 'Work. UOM', 
+        help="Choose UOM that represents you working hour.\n Usually it is Hour(s) that has Working Time category")
     default_working_hours = fields.Many2one('resource.calendar', 'Default Working Schedule')
   
