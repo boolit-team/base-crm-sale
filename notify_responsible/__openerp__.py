@@ -22,7 +22,7 @@
 
 {
     'name': 'Notify Responsible',
-    'version': '1.1',
+    'version': '1.11',
     'depends': ['crm_helpdesk', 'project'],
     'author': 'OERP',
     'summary': 'Get notification if you are set responsible',
