@@ -23,7 +23,7 @@
 
 {
     'name': 'No link in signature',
-    'version': '1.0',
+    'version': '1.01',
     'category': 'Mail',
     'summary': 'signature, mail, disable',
     'description': """
@@ -31,7 +31,8 @@
 	""",
     'author': 'OERP',
     'website': 'www.oerp.eu',
-    'depends': [      
+    'depends': [
+        'portal_no_link',      
     ],
     'data': [
         #'security/ir.model.access.csv',
