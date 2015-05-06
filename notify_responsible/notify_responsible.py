@@ -70,7 +70,7 @@ class task(models.Model):
 
     _track = orig_task._track
     _track['user_id'] = {
-        'project.mt_task_assigned': lambda self, cr, uid, obj, ctx=None: obj.user_id.id != uid
+        'notify_responsible.mt_task_user': lambda self, cr, uid, obj, ctx=None: obj.user_id.id != uid
     }   
 
 class mail_notification(models.Model):
@@ -94,7 +94,7 @@ class mail_notification(models.Model):
             message = self.env['mail.message'].browse(message_id)
             msg_sub_ids_pair = message.subtype_id.get_external_id()
             external_ids = ('notify_responsible.mt_lead_user', 'notify_responsible.mt_helpdesk_user', 'notify_responsible.mt_project_user', 
-                'project.mt_task_assigned',)
+                'notify_responsible.mt_task_user',)
             if msg_sub_ids_pair and msg_sub_ids_pair.get(message.subtype_id.id) in external_ids:
                 obj = self.env[message.model].browse(message.res_id)
                 if obj.user_id:

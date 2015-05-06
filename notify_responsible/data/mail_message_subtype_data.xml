@@ -25,21 +25,31 @@
             <field name="default" eval="True"/>
         </record>  
 
+        <!-- project.task -->
+        <record id="mt_task_user" model="mail.message.subtype">
+            <field name="name">Task Assignet to Me</field>
+            <field name="res_model">project.task</field>
+            <field name="description">Assignet changed</field>
+            <field name="default" eval="True"/>
+        </record>
+
         <!-- project.project-->  
+
+        <record id="mt_project_task_user" model="mail.message.subtype">
+            <field name="name">Task Assignet to Me</field>
+            <field name="res_model">project.project</field>
+            <field name="description">Assignet changed</field>
+            <field name="parent_id" eval="ref('mt_task_user')"/>
+            <field name="default" eval="True"/>
+            <field name="relation_field">project_id</field>
+        </record>
+
         <record id="mt_project_user" model="mail.message.subtype">
             <field name="name">Manager Changed to Me</field>
             <field name="res_model">project.project</field>
             <field name="description">Manager changed</field>
             <field name="default" eval="True"/>
-        </record>   
-
-        <!-- project.task -->
-        <record id="project.mt_task_user" model="mail.message.subtype">
-            <field name="name">Task Assignet to Me</field>
-            <field name="res_model">project.task</field>
-            <field name="description">Assignet changed</field>
-            <field name="default" eval="True"/>
-        </record>                   
+        </record>                      
 
     </data>
 </openerp>
