@@ -1,5 +1,24 @@
 # -*- coding: utf-8 -*-
-
+##############################################################################
+#    
+#    Odoo, Open Source Management Solution
+#
+#    Author: Andrius Laukavičius. Copyright: JSC Boolit
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#
+##############################################################################
 from openerp import models, fields, api
 
 class ir_mail_server(models.Model):
@@ -7,12 +26,17 @@ class ir_mail_server(models.Model):
 
     user_id = fields.Many2one('res.users', string="Owner")
 
-    @api.model
-    def send_email(self, message, mail_server_id=None, smtp_server=None, smtp_port=None,
-                   smtp_user=None, smtp_password=None, smtp_encryption=None, smtp_debug=False):
-        #get uid from context. self.env.uid does not always provide current uid
-        mail_server = self.search([('user_id', '=', self.env.context.get('uid'))], limit=1) 
-        if mail_server:
-            mail_server_id = mail_server.id
-        return super(ir_mail_server, self).send_email(message=message, mail_server_id=mail_server_id, smtp_server=smtp_server, smtp_port=smtp_port,
-                   smtp_user=smtp_user, smtp_password=smtp_password, smtp_encryption=smtp_encryption, smtp_debug=smtp_debug)
+class mail_mail(models.Model):
+    _inherit = 'mail.mail'
+
+    @api.multi
+    def send(self, auto_commit=False, raise_exception=False):
+        ir_mail_server_obj = self.env['ir.mail_server']
+        res_user_obj = self.env['res.users']
+        for email in self:
+            user = res_user_obj.search([('partner_id', '=', email.author_id.id)], limit=1)
+            if user:
+                mail_server = ir_mail_server_obj.search([('user_id', '=', user.id)], limit=1)
+                if mail_server:
+                    email.mail_server_id = mail_server.id
+        return super(mail_mail, self).send(auto_commit=False, raise_exception=False)
