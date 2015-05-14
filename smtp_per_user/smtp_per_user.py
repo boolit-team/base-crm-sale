@@ -20,12 +20,25 @@
 #
 ##############################################################################
 from openerp import models, fields, api
+from email.utils import parseaddr, formataddr
 
 class ir_mail_server(models.Model):
     _inherit = "ir.mail_server"
 
     user_id = fields.Many2one('res.users', string="Owner")
+    email_name = fields.Char('Email Name', help="Overrides default email name")
     force_use = fields.Boolean('Force Use', help="If checked and this server is chosen to send mail message, It will ignore owners mail server")
+
+    @api.model
+    def replace_email_name(self, old_email):
+        """
+        Replaces email name if new one is provided
+        """
+        if self.email_name:
+            old_name, email = parseaddr(old_email)
+            return formataddr((self.email_name, email))
+        else:
+            return old_email    
 
 class mail_mail(models.Model):
     _inherit = 'mail.mail'
@@ -41,4 +54,5 @@ class mail_mail(models.Model):
                     mail_server = ir_mail_server_obj.search([('user_id', '=', user.id)], limit=1)
                     if mail_server:
                         email.mail_server_id = mail_server.id
+            email.email_from = email.mail_server_id.replace_email_name(email.email_from)
         return super(mail_mail, self).send(auto_commit=False, raise_exception=False)

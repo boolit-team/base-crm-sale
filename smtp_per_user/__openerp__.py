@@ -22,7 +22,7 @@
 
 {
     'name': "SMTP Per User",
-    'version': '0.32',
+    'version': '0.33',
     'summary': 'Send letters from Odoo using your own mail',
     'category': 'Mail',
     'description': """Can configure different mail servers per user""",
