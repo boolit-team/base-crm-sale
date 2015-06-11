@@ -23,7 +23,7 @@
 
 {
     'name': 'Reasons Management',
-    'version': '1.0',
+    'version': '1.1',
     'category': 'Reasons',
     'summary': 'Reasons Management Tree',
     'description': """
@@ -37,6 +37,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/base_reason_security.xml',
         'views/reason_view.xml',
         #'data/,        
 
