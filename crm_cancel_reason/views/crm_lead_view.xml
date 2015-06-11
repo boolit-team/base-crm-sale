@@ -14,8 +14,8 @@
                             <tree string="Cancel Reasons" editable="bottom">
                                 <field name="tier_one_id" widget="selection" 
                                     domain="['|', ('model_ids.model', '=', 'crm.lead'), ('model_ids', '=', False)]"/>
-                                <field name="tier_two_id" domain="[('parent_id', '=', tier_one_id)]" widget="selection"/>
-                                <field name="tier_three_id" domain="[('parent_id', '=', tier_two_id)]" widget="selection"/>
+                                <field name="tier_two_id" domain="[('parent_id', '=', tier_one_id)]" widget="selection" groups="base_reason.group_additional tiers"/>
+                                <field name="tier_three_id" domain="[('parent_id', '=', tier_two_id)]" widget="selection" groups="base_reason.group_additional tiers"/>
                                 <field name="details"/>
                             </tree>
                         </field>
@@ -24,5 +24,18 @@
             </field>
         </record>
 
+        <!-- Search -->
+        <!-- Opportunities Search View -->
+        <record id="view_crm_case_opportunities_filter" model="ir.ui.view">
+            <field name="name">CRM - Opportunities Search</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+            <field name="arch" type="xml">
+                    <field name="probability" position="after">
+                        <field name="reason_ids" string="Cancel Reasons Tier One" filter_domain="[('reason_ids.tier_one_id.name', 'ilike', self)]"/>
+                        <field name="reason_ids" string="Cancel Reasons Tier Two &amp; Three" filter_domain="['|', ('reason_ids.tier_two_id.name', 'ilike', self), ('reason_ids.tier_three_id.name', 'ilike', self)]"/>
+                    </field>
+            </field>
+        </record>        
     </data>
 </openerp>
