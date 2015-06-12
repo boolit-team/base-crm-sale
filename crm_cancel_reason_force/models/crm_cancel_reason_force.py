@@ -23,7 +23,7 @@
 from openerp import fields, models, api, _
 
 class crm_lead(models.Model):
-    _inherit = 'crm.lead'
+    _inherit = 'crm.lead'      
 
     @api.multi
     def case_mark_lost(self):
@@ -42,3 +42,4 @@ class crm_lead(models.Model):
             }
         else:
             return super(crm_lead, self).case_mark_lost()
+

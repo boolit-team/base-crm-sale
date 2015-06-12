@@ -32,9 +32,12 @@ class force_cancel_reason(models.TransientModel):
 
     @api.multi
     def submit_reasons(self):
+        if not self.reason_ids:
+            raise Warning(_("You must enter at least one reason!"))
         opp_ids = self.env.context and self.env.context.get('active_ids', [])
         opportunities = self.env['crm.lead'].browse(opp_ids)
-        if opportunities and len(opportunities) > 1:
+        # We need this only if there are more than one opportunity
+        if len(opportunities) > 1:
             for opp in opportunities:
                 opp.reason_ids = self.reason_ids.copy()
         opportunities.with_context(submitted_reasons=True).case_mark_lost()
