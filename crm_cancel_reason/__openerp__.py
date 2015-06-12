@@ -23,7 +23,7 @@
 
 {
     'name': 'Opportunity Cancel Reasons',
-    'version': '1.1',
+    'version': '1.11',
     'category': 'Reasons',
     'summary': 'Manage Cancel Reasons',
     'description': """
