@@ -22,14 +22,14 @@
 
 
 {
-    'name': 'Opportunity Cancel Reasons',
-    'version': '1.11',
+    'name': 'Opportunity Lost Reasons',
+    'version': '1.12',
     'category': 'Reasons',
-    'summary': 'Manage Cancel Reasons',
+    'summary': 'Manage Opportunities Lost Reasons',
     'description': """
-	Lets you define and choose cancel reasons for Opportunities.
+	Lets you define and choose lost reasons for Opportunities.
     Uses base_reason module as a base for reason management. 
-    Cancel reasons become visible when opportunity is cancelled.
+    Lost reasons become visible when opportunity is lost.
 	""",
     'author': 'OERP',
     'website': 'www.oerp.eu',
