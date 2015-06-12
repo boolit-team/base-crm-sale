@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_force_cancel_reason_form" model="ir.ui.view">
+            <field name="name">force.cancel.reason - Form</field>
+            <field name="model">force.cancel.reason</field>
+            <field name="arch" type="xml">
+                <form string="Cancel Reasons"> 
+                    <sheet>
+                        <field name="reason_ids">
+                            <tree string="Cancel Reasons" editable="bottom">
+                                <field name="tier_one_id" widget="selection" 
+                                    domain="['|', ('model_ids.model', '=', 'crm.lead'), ('model_ids', '=', False)]"/>
+                                <field name="tier_two_id" domain="[('parent_id', '=', tier_one_id)]" widget="selection" groups="base_reason.group_additional tiers"/>
+                                <field name="tier_three_id" domain="[('parent_id', '=', tier_two_id)]" widget="selection" groups="base_reason.group_additional tiers"/>
+                                <field name="details"/>
+                            </tree>
+                        </field>
+                        <footer>
+                            <button string="Mark Lost" name="submit_reasons" type="object" class="oe_highlight"/>
+                        </footer>                        
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_force_action_reason_single"
+            key2="client_action_multi" name="Mark Lost"
+            res_model="force.cancel.reason" src_model="crm.lead"
+            view_mode="form" target="new" view_type="form"
+            context="{'default_opportunity_id' : active_id}"
+            view_id="view_force_cancel_reason_form"
+        />
+        
+        <delete id="crm.ir_mark_as_lost" model="ir.values"/>
+        <delete id="crm.action_mark_as_lost" model="ir.actions.server"/>
+        
+                 
+    </data>
+</openerp>
