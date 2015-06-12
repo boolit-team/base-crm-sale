@@ -22,8 +22,8 @@
 
 
 {
-    'name': 'Mandatory opportunity cancel reason',
-    'version': '0.4',
+    'name': 'Mandatory opportunity lost reason',
+    'version': '0.5',
     'category': 'CRM',
     'summary': 'cancel reason, mandatory, window',
     'description': """

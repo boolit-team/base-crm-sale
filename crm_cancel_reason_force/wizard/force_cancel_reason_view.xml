@@ -5,10 +5,10 @@
             <field name="name">force.cancel.reason - Form</field>
             <field name="model">force.cancel.reason</field>
             <field name="arch" type="xml">
-                <form string="Cancel Reasons"> 
+                <form string="Lost Reasons"> 
                     <sheet>
                         <field name="reason_ids">
-                            <tree string="Cancel Reasons" editable="bottom">
+                            <tree string="Lost Reasons" editable="bottom">
                                 <field name="tier_one_id" widget="selection" 
                                     domain="['|', ('model_ids.model', '=', 'crm.lead'), ('model_ids', '=', False)]" attrs="{'required': True}"/>
                                 <field name="tier_two_id" domain="[('parent_id', '=', tier_one_id)]" widget="selection" groups="base_reason.group_additional tiers"/>
@@ -25,7 +25,7 @@
         </record>
 
         <act_window id="action_force_action_reason_single"
-            key2="client_action_multi" name="Mark Lost"
+            key2="client_action_multi" name="Mark as Lost"
             res_model="force.cancel.reason" src_model="crm.lead"
             view_mode="form" target="new" view_type="form"
             context="{'default_opportunity_id' : active_id}"

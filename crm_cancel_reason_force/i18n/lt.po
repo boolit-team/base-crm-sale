@@ -1,0 +1,83 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* crm_cancel_reason_force
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-12 11:03+0000\n"
+"PO-Revision-Date: 2015-06-12 11:03+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: crm_cancel_reason_force
+#: field:force.cancel.reason,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: crm_cancel_reason_force
+#: field:force.cancel.reason,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: crm_cancel_reason_force
+#: model:ir.model,name:crm_cancel_reason_force.model_force_cancel_reason
+msgid "Force Cancel Reason"
+msgstr "Force Cancel Reason"
+
+#. module: crm_cancel_reason_force
+#: field:force.cancel.reason,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: crm_cancel_reason_force
+#: field:force.cancel.reason,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: crm_cancel_reason_force
+#: field:force.cancel.reason,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: crm_cancel_reason_force
+#: model:ir.model,name:crm_cancel_reason_force.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Iniciatyva/Pardavimo galimybė"
+
+#. module: crm_cancel_reason_force
+#: view:force.cancel.reason:crm_cancel_reason_force.view_force_cancel_reason_form
+msgid "Lost Reasons"
+msgstr "Praradimo priežastys"
+
+#. module: crm_cancel_reason_force
+#: view:force.cancel.reason:crm_cancel_reason_force.view_force_cancel_reason_form
+msgid "Mark Lost"
+msgstr "Pažymėti kaip prarastą"
+
+#. module: crm_cancel_reason_force
+#: model:ir.actions.act_window,name:crm_cancel_reason_force.action_force_action_reason_single
+msgid "Mark as Lost"
+msgstr "Pažymėti kaip prarastą"
+
+#. module: crm_cancel_reason_force
+#: field:force.cancel.reason,opportunity_id:0
+msgid "Opportunity"
+msgstr "Pardavimo galimybė"
+
+#. module: crm_cancel_reason_force
+#: model:ir.model,name:crm_cancel_reason_force.model_base_reason
+msgid "Reasons"
+msgstr "Priežastys"
+
+#. module: crm_cancel_reason_force
+#: code:addons/crm_cancel_reason_force/wizard/force_cancel_reason.py:36
+#, python-format
+msgid "You must enter at least one reason!"
+msgstr "Reikia įvesti bent vieną priežastį!"
+
