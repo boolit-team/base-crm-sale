@@ -7,6 +7,7 @@
             <field name="arch" type="xml">
                 <form string="Lost Reasons"> 
                     <sheet>
+                        <separator string="Lost Reasons"/>
                         <field name="reason_ids">
                             <tree string="Lost Reasons" editable="bottom">
                                 <field name="tier_one_id" widget="selection" 
