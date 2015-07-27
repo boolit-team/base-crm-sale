@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="view_partners_form_crm1_inherit_crm_phonecall_schedule" model="ir.ui.view">
+            <field name="name">view.res.partner.form.crm.inherited2</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="crm.view_partners_form_crm1"/>
+            <field name="arch" type="xml">
+                <button name="%(crm.crm_case_categ_phone_incoming0)d" position="attributes">
+                    <attribute name="name">%(crm.crm_case_categ_phone_outgoing0)d</attribute>
+                </button>
+            </field>    
+        </record>  
+    </data>
+</openerp>
