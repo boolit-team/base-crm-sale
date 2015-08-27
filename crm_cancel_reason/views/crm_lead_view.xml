@@ -14,8 +14,8 @@
                             <tree string="Lost Reasons" editable="bottom">
                                 <field name="tier_one_id" widget="selection" 
                                     domain="['|', ('model_ids.model', '=', 'crm.lead'), ('model_ids', '=', False)]"/>
-                                <field name="tier_two_id" domain="[('parent_id', '=', tier_one_id)]" widget="selection" groups="base_reason.group_additional tiers"/>
-                                <field name="tier_three_id" domain="[('parent_id', '=', tier_two_id)]" widget="selection" groups="base_reason.group_additional tiers"/>
+                                <field name="tier_two_id" domain="[('parent_id', '=', tier_one_id)]" widget="selection" groups="base_reason.group_additional_tiers"/>
+                                <field name="tier_three_id" domain="[('parent_id', '=', tier_two_id)]" widget="selection" groups="base_reason.group_additional_tiers"/>
                                 <field name="details"/>
                             </tree>
                         </field>

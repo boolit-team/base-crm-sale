@@ -2,7 +2,7 @@
 <openerp>
 <data noupdate="0">  
 
-    <record id="group_additional tiers" model="res.groups">
+    <record id="group_additional_tiers" model="res.groups">
         <field name="name">Show additional tiers for reasons</field>
         <field name="category_id" ref="base.module_category_hidden"/>
     </record>
