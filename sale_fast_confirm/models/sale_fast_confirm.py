@@ -22,21 +22,22 @@
 
 from openerp import models, api
 
-class sale(models.Model):
+class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    @api.one
+    @api.multi
     def order_process_now(self):
         """
         Confirms order and creates and validates invoice, confirms pickings.
         """
-        # Process order 
-        self.action_button_confirm()
-        inv_id = self.action_invoice_create()
-        if inv_id:
-            inv = self.env['account.invoice'].browse(inv_id)
-            inv.signal_workflow('invoice_open')
-        for picking in self.picking_ids:
-            picking.force_assign()
-            picking.action_done()
+        for sale in self:
+            # Process order 
+            sale.action_button_confirm()
+            inv_id = sale.action_invoice_create()
+            if inv_id:
+                inv = self.env['account.invoice'].browse(inv_id)
+                inv.signal_workflow('invoice_open')
+            for picking in sale.picking_ids:
+                picking.force_assign()
+                picking.action_done()
 

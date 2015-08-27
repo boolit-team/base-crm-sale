@@ -23,7 +23,7 @@
 
 {
     'name': 'Sale Fast Confirm',
-    'version': '1.0',
+    'version': '1.1',
     'category': 'Sale',
     'summary': 'Auto confirm invoice, delivery orders',
     'description': """
