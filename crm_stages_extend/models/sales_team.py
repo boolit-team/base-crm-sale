@@ -28,7 +28,7 @@ class crm_case_section_stage_config(models.Model):
     _name = 'crm.case.section.stage_config'
     _description = 'Sales Team Stages Configuration'
 
-    section_id = fields.Many2one('crm.case.section', 'Sales Team')
+    section_id = fields.Many2one('crm.case.section', 'Sales Team', ondelete='cascade')
     stage_id = fields.Many2one('crm.case.stage', 'Stage', domain=[('type', '!=', 'lead'), ('probability', '!=', 0.0)], required=True)
     next_stage_id = fields.Many2one('crm.case.stage', 'Next Stage', domain=[('type', '!=', 'lead'), ('probability', '!=', 0.0)])
     back_stage_id = fields.Many2one('crm.case.stage', 'Back Stage', domain=[('type', '!=', 'lead'), ('probability', '!=', 0.0)])

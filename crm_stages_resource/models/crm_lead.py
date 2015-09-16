@@ -30,24 +30,24 @@ import pytz
 class crm_lead(models.Model):
     _inherit = 'crm.lead'
 
-    @api.one
     def _compute_stage_deadline(self):
-        self.stage_deadline = None      
-        stage_config = self.get_stage_config()
-        stage_logs = self.get_stage_log()
-        if stage_config and stage_logs:
-            stage_log = stage_logs[-1]              
-            create_date = datetime.strptime(stage_log.create_date, "%Y-%m-%d %H:%M:%S")
-            if not self.env.user.tz:
-                raise Warning(_("%s timezone is not set!" % (self.env.user.name)))
-            self.stage_deadline = create_date + timedelta(days=stage_config.days_for_stage)
-            if self.section_id.uom_id:
-                if stage_config.working_hours or self.section_id.default_working_hours:             
-                    working_hours = stage_config.working_hours or self.section_id.default_working_hours
-                    hours_for_stage = int(stage_config.days_for_stage * self.section_id.uom_id.factor)
-                    end_dt = working_hours.schedule_hours(hours=hours_for_stage, day_dt=create_date)
-                    end_dt = end_dt[-1][-1][-1]
-                    tz = pytz.timezone(self.env.user.tz)
-                    end_dt = tz.localize(end_dt)
-                    end_dt = end_dt.astimezone(pytz.utc)                        
-                    self.stage_deadline = end_dt                                
+        for rec in self:
+            rec.stage_deadline = None      
+            stage_config = rec.get_stage_config()
+            stage_logs = rec.get_stage_log()
+            if stage_config and stage_logs:
+                stage_log = stage_logs[-1]              
+                create_date = datetime.strptime(stage_log.create_date, "%Y-%m-%d %H:%M:%S")
+                if not rec.env.user.tz:
+                    raise Warning(_("%s timezone is not set!" % (rec.env.user.name)))
+                rec.stage_deadline = create_date + timedelta(days=stage_config.days_for_stage)
+                if rec.section_id.uom_id:
+                    if stage_config.working_hours or rec.section_id.default_working_hours:             
+                        working_hours = stage_config.working_hours or rec.section_id.default_working_hours
+                        hours_for_stage = int(stage_config.days_for_stage * rec.section_id.uom_id.factor)
+                        end_dt = working_hours.schedule_hours(hours=hours_for_stage, day_dt=create_date)
+                        end_dt = end_dt[-1][-1][-1]
+                        tz = pytz.timezone(rec.env.user.tz)
+                        end_dt = tz.localize(end_dt)
+                        end_dt = end_dt.astimezone(pytz.utc)                        
+                        rec.stage_deadline = end_dt                                

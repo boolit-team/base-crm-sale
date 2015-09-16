@@ -70,7 +70,7 @@ class crm_lead(models.Model):
     @api.returns('crm.case.section.stage_config')
     def get_stage_config(self):
         stage_config = self.env['crm.case.section.stage_config'].search(
-            [('section_id', '=', self.section_id.id), ('stage_id', '=', self.stage_id.id)])
+            [('section_id', '!=', False), ('section_id', '=', self.section_id.id), ('stage_id', '=', self.stage_id.id)])
         while stage_config:
             return stage_config 
 
@@ -204,13 +204,13 @@ class crm_lead(models.Model):
                 self.env['crm.lead.stage_log'].create(log_vals)
         return super(crm_lead, self).case_mark_lost()
 
-    @api.one
     def _compute_stage_deadline(self):
-        self.stage_deadline = None      
-        stage_config = self.get_stage_config()
-        if stage_config:
-            stage_logs = self.get_stage_log()
-            if stage_logs:
-                stage_log = stage_logs[-1] #get the last log of stage               
-                create_date = datetime.strptime(stage_log.create_date, "%Y-%m-%d %H:%M:%S")             
-                self.stage_deadline = create_date + timedelta(days=stage_config.days_for_stage)
+        for rec in self:
+            rec.stage_deadline = None      
+            stage_config = rec.get_stage_config()
+            if stage_config:
+                stage_logs = rec.get_stage_log()
+                if stage_logs:
+                    stage_log = stage_logs[-1] #get the last log of stage               
+                    create_date = datetime.strptime(stage_log.create_date, "%Y-%m-%d %H:%M:%S")             
+                    rec.stage_deadline = create_date + timedelta(days=stage_config.days_for_stage)
