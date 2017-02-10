@@ -1,26 +1,7 @@
 # -*- encoding: utf-8 -*-
-##############################################################################
-#    
-#    Odoo, Open Source Management Solution
-#
-#    Author: Andrius Laukavičius. Copyright: JSC NOD Baltic
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
-#
-##############################################################################
 
-from openerp import models, fields, api
+from odoo import models, fields, api
+
 
 class reason_tier_one(models.Model):
     _name = 'base.reason.tier.one'
@@ -37,6 +18,7 @@ class reason_tier_two(models.Model):
 
     name = fields.Char('Second Tier Reason')
     parent_id = fields.Many2one('base.reason.tier.one', 'Parent')
+
 
 class reason_tier_three(models.Model):
     _name = 'base.reason.tier.three'
