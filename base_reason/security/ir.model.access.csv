@@ -1,8 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_base_reason_tier_one_user,access_base_reason_tier_one user,model_base_reason_tier_one,base.group_sale_salesman,1,0,0,0
-access_base_reason_tier_one_manager,access_base_reason_tier_one manager,model_base_reason_tier_one,base.group_sale_manager,1,1,1,1
-access_base_reason_tier_two_user,access_base_reason_tier_two user,model_base_reason_tier_two,base.group_sale_salesman,1,0,0,0
-access_base_reason_tier_two_manager,access_base_reason_tier_two manager,model_base_reason_tier_two,base.group_sale_manager,1,1,1,1
-access_base_reason_tier_three_user,access_base_reason_tier_three user,model_base_reason_tier_three,base.group_sale_salesman,1,0,0,0
-access_base_reason_tier_three_manager,access_base_reason_tier_three manager,model_base_reason_tier_three,base.group_sale_manager,1,1,1,1
-access_base_reason_user,access_base_reason user,model_base_reason,base.group_sale_salesman,1,1,1,1
