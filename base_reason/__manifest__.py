@@ -4,7 +4,7 @@
 
 {
     'name': 'Reasons Management',
-    'version': '0.1.0',
+    'version': '0.2.0',
     'category': 'Reasons',
     'summary': 'Reasons Management Tree',
     'description': """
