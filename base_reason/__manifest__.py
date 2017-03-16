@@ -4,7 +4,7 @@
 
 {
     'name': 'Reasons Management',
-    'version': '0.2.0',
+    'version': '0.2.1',
     'category': 'Reasons',
     'summary': 'Reasons Management Tree',
     'description': """
@@ -14,7 +14,7 @@ For example it can be used to manage opportunities cancel reasons.
     'author': 'Boolit',
     'website': 'www.boolit.eu',
     'depends': [
-        'base'    
+        'sales_team',
     ],
     'data': [
         'security/ir.model.access.csv',
