@@ -4,13 +4,12 @@
 
 {
     'name': "SMTP Per User",
-    'version': '1.1.0',
+    'version': '1.2.0',
     'summary': 'Send letters from Odoo using your own mail',
     'category': 'Mail',
     'description': """Can configure different mail servers per user""",
-    'author': 'OERP',
-    'license': 'AGPL-3',
-    'website': "www.oerp.eu",
+    'author': 'Boolit',
+    'website': "www.boolit.eu",
     "depends" : ['mail'],
     'data': [
         'security/ir.model.access.csv',
