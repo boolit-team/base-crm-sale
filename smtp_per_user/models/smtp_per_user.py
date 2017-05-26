@@ -39,4 +39,5 @@ class MailMail(models.Model):
                     if mail_server:
                         email.mail_server_id = mail_server.id
             email.email_from = email.mail_server_id.replace_email_name(email.email_from)
-        return super(MailMail, self).send(auto_commit=False, raise_exception=False)
+        return super(MailMail, self).send(auto_commit=auto_commit,
+                                          raise_exception=raise_exception)
