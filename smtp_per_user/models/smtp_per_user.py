@@ -1,28 +1,11 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
-#    Odoo, Open Source Management Solution
-#
-#    Author: Andrius Laukavičius. Copyright: JSC Boolit
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
-#
-##############################################################################
-from openerp import models, fields, api
+
 from email.utils import parseaddr, formataddr
 
-class ir_mail_server(models.Model):
+from odoo import models, fields, api
+
+
+class IrMailServer(models.Model):
     _inherit = "ir.mail_server"
 
     user_id = fields.Many2one('res.users', string="Owner")
@@ -40,7 +23,8 @@ class ir_mail_server(models.Model):
         else:
             return old_email    
 
-class mail_mail(models.Model):
+
+class MailMail(models.Model):
     _inherit = 'mail.mail'
 
     @api.multi
@@ -55,4 +39,4 @@ class mail_mail(models.Model):
                     if mail_server:
                         email.mail_server_id = mail_server.id
             email.email_from = email.mail_server_id.replace_email_name(email.email_from)
-        return super(mail_mail, self).send(auto_commit=False, raise_exception=False)
+        return super(MailMail, self).send(auto_commit=False, raise_exception=False)
