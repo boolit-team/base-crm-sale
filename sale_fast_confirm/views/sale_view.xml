@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_order_confirm_form" model="ir.ui.view">
+            <field name="name">sale.order.form - Confirm</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <button name="action_button_confirm" states="sent" position="after">
+                    <button name="order_process_now" string="Fast Confirm" type="object" states="draft,sent" groups="base.group_user"/>
+                </button>
+            </field>
+        </record>
+        <record id="order_process_now_action" model="ir.actions.server">
+            <field name="name">Fast Confirm</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">
+                if context.get('active_model') == 'sale.order' and context.get('active_ids'):
+                    self.order_process_now(cr, uid, context['active_ids'], context=context)
+            </field>
+        </record>
+
+        <record id="ir_order_process_now" model="ir.values">
+            <field eval="'client_action_multi'" name="key2"/>
+            <field eval="'sale.order'" name="model"/>
+            <field name="name">Fast Confirm</field>
+            <field eval="'ir.actions.server,%d'%order_process_now_action" name="value"/>
+        </record>        
+    </data>
+</openerp>
