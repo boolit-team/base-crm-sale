@@ -6,7 +6,7 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <button name="action_button_confirm" states="sent" position="after">
+                <button name="action_confirm" states="sent" position="after">
                     <button name="order_process_now" string="Fast Confirm" type="object" states="draft,sent" groups="base.group_user"/>
                 </button>
             </field>

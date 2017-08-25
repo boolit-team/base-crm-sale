@@ -15,7 +15,7 @@ class SaleOrder(models.Model):
         """
         for sale in self:
             # Process order 
-            sale.action_button_confirm()
+            sale.action_confirm()
             inv_id = sale.action_invoice_create()
             if inv_id:
                 inv = self.env['account.invoice'].browse(inv_id)
