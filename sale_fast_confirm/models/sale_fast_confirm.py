@@ -10,9 +10,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def order_process_now(self, send_invoice=True):
-        """
-        Confirms order and creates and validates invoice, confirms pickings.
-        """
+        """Confirm order, pickings (if any) and invoice, send invoice mail."""
         for sale in self:
             # Process order 
             sale.action_confirm()

@@ -4,7 +4,7 @@
 
 {
     'name': 'Sale Fast Confirm',
-    'version': '1.2.0',
+    'version': '1.3.0',
     'category': 'Sale',
     'summary': 'sale order, invoice, delivery orders, confirm',
     'author': 'Boolit',
