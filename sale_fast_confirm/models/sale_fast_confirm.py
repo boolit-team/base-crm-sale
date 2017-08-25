@@ -34,6 +34,7 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_force_invoice_send(self):
+        """Send invoice via email with 0 input from user."""
         for inv in self:
             email_act = inv.action_invoice_sent()
             if email_act and email_act.get('context'):
