@@ -4,12 +4,12 @@
 
 {
     'name': 'Sale Fast Confirm',
-    'version': '1.3.0',
+    'version': '1.3.1',
     'category': 'Sale',
     'summary': 'sale order, invoice, delivery orders, confirm',
     'author': 'Boolit',
     'website': 'www.boolit.eu',
-    'depends': [   
+    'depends': [
         'sale_stock',
     ],
     'data': [
