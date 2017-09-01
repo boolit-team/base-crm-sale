@@ -9,7 +9,7 @@
     'summary': 'sale order, invoice, delivery orders, confirm',
     'author': 'Boolit',
     'website': 'www.boolit.eu',
-    'depends': [   
+    'depends': [
         'sale_stock',
     ],
     'data': [
