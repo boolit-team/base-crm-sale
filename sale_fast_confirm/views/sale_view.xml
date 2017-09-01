@@ -16,16 +16,16 @@
             <field name="model_id" ref="model_sale_order"/>
             <field name="state">code</field>
             <field name="code">
-                if context.get('active_model') == 'sale.order' and context.get('active_ids'):
-                    self.order_process_now(cr, uid, context['active_ids'], context=context)
+if records:
+    records.order_process_now()
             </field>
         </record>
 
         <record id="ir_order_process_now" model="ir.values">
-            <field eval="'client_action_multi'" name="key2"/>
-            <field eval="'sale.order'" name="model"/>
+            <field name="key2" eval="'client_action_multi'" />
+            <field name="model" eval="'sale.order'"/>
             <field name="name">Fast Confirm</field>
-            <field eval="'ir.actions.server,%d'%order_process_now_action" name="value"/>
+            <field name="value" eval="'ir.actions.server,%d'%order_process_now_action"/>
         </record>        
     </data>
 </openerp>
