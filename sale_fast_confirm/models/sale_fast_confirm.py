@@ -9,20 +9,22 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     @api.multi
-    def order_process_now(self, send_invoice=True):
+    def order_process_now(self, send_invoice=True, skip_confirm=False):
         """Confirm order, pickings (if any) and invoice, send invoice mail."""
         for sale in self:
-            # Process order 
-            sale.action_confirm()
-            inv_id = sale.action_invoice_create()
-            if inv_id:
-                inv = self.env['account.invoice'].browse(inv_id)
-                inv.action_invoice_open()
-                if send_invoice:
-                    inv.action_force_invoice_send()
-            for picking in sale.picking_ids:
-                picking.force_assign()
-                picking.action_done()
+            # Process order
+            if not skip_confirm:
+                sale.action_confirm()
+            if sale.state not in ('draft', 'sent', 'cancel'):
+                inv_id = sale.action_invoice_create()
+                if inv_id:
+                    inv = self.env['account.invoice'].browse(inv_id)
+                    inv.action_invoice_open()
+                    if send_invoice:
+                        inv.action_force_invoice_send()
+                for picking in sale.picking_ids:
+                    picking.force_assign()
+                    picking.action_done()
 
 
 class AccountInvoice(models.Model):
