@@ -28,9 +28,9 @@ class mail_mail(models.Model):
     @api.model
     def _get_partner_access_link(self, mail, partner=None):
         """
-        Overrides to return nothing if partner has not user
+        Overrides to return nothing if partner has portal user or has not user.
         """
-        if partner and not partner.user_ids:
+        if partner and all([x.has_group('base.group_portal') for x in partner.user_ids]):
             return None
         else:
             return super(mail_mail, self)._get_partner_access_link(mail, partner)
